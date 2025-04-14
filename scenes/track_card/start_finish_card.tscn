@@ -6,3 +6,11 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_cdqlh")
+
+[node name="CircuitLinks" type="Node2D" parent="."]
+
+[node name="CircuitLink1" type="Marker2D" parent="CircuitLinks"]
+position = Vector2(-64, 32)
+
+[node name="CircuitLink2" type="Marker2D" parent="CircuitLinks"]
+position = Vector2(64, 32)
