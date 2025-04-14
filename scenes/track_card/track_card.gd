@@ -26,3 +26,9 @@ func rotate_card(deg) -> void:
 	card_orientation += 1
 	if card_orientation == 4:
 		card_orientation = 0
+
+
+func reset_after_dragging(starting_position: Vector2, orientation: int) -> void:
+	while orientation != card_orientation:
+		rotate_card(90)
+	global_position = starting_position
