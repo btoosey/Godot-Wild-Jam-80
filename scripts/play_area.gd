@@ -2,6 +2,7 @@ class_name PlayArea
 extends TileMapLayer
 
 @export var play_area_track_card_grid: TrackCardGrid
+@export var tile_highlighter: TileHighlighter
 
 var bounds: Rect2i
 

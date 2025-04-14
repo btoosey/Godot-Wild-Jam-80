@@ -25,6 +25,11 @@ func _get_play_area_for_position(global: Vector2) -> int:
 	return dropped_area_index
 
 
+func _set_highlighters(enabled: bool) -> void:
+	for play_area: PlayArea in play_areas:
+		play_area.tile_highlighter.enabled = enabled
+
+
 func _reset_track_card_to_starting_position(track_card: TrackCard, starting_position: Vector2, orientation: int) -> void:
 	var i := _get_play_area_for_position(starting_position)
 	var tile := play_areas[i].get_tile_from_global(starting_position)
@@ -45,6 +50,8 @@ func setup_track_card(track_card: TrackCard) -> void:
 
 
 func _on_track_card_drag_started(track_card: TrackCard) -> void:
+	_set_highlighters(true)
+
 	starting_orientation = track_card.card_orientation
 
 	var i := _get_play_area_for_position(track_card.global_position)
@@ -56,6 +63,8 @@ func _on_track_card_drag_started(track_card: TrackCard) -> void:
 
 
 func _on_track_card_dropped(starting_position: Vector2, track_card: TrackCard) -> void:
+	_set_highlighters(false)
+
 	var drop_area_index := _get_play_area_for_position(track_card.global_position)
 	var secondary_drop_area_index = _get_play_area_for_position(track_card.global_position + (Vector2(track_card.secondary_card_halves[track_card.card_orientation]) * Main.CELL_SIZE))
 
