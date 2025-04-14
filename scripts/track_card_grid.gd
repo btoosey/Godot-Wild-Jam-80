@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func add_track_card(tile: Vector2i, track_card: Node) -> void:
 	track_cards[tile] = track_card
+	track_cards[tile + track_card.secondary_card_halves[track_card.card_orientation]] = track_card
 	track_card_grid_changed.emit()
 
 

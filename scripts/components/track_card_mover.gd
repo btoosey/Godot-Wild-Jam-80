@@ -51,21 +51,26 @@ func _on_track_card_drag_started(track_card: TrackCard) -> void:
 	if i > -1:
 		var tile := play_areas[i].get_tile_from_global(track_card.global_position)
 		play_areas[i].play_area_track_card_grid.remove_track_card(tile)
+		play_areas[i].play_area_track_card_grid.remove_track_card(tile + track_card.secondary_card_halves[track_card.card_orientation])
+
 
 
 func _on_track_card_dropped(starting_position: Vector2, track_card: TrackCard) -> void:
 	var drop_area_index := _get_play_area_for_position(track_card.global_position)
+	var secondary_drop_area_index = _get_play_area_for_position(track_card.global_position + (Vector2(track_card.secondary_card_halves[track_card.card_orientation]) * Main.CELL_SIZE))
 
-	if drop_area_index == -1:
+
+	if drop_area_index == -1  or secondary_drop_area_index == -1:
 		_reset_track_card_to_starting_position(track_card, starting_position, starting_orientation)
 		return
 
 
 	var new_area := play_areas[drop_area_index]
 	var new_tile := new_area.get_hovered_tile()
+	var secondary_new_tile = new_tile + track_card.secondary_card_halves[track_card.card_orientation]
 
 
-	if play_areas[drop_area_index].play_area_track_card_grid.is_tile_occupied(new_tile):
+	if play_areas[drop_area_index].play_area_track_card_grid.is_tile_occupied(new_tile)  or play_areas[drop_area_index].play_area_track_card_grid.is_tile_occupied(secondary_new_tile):
 		_reset_track_card_to_starting_position(track_card, starting_position, starting_orientation)
 		return
 	else:
