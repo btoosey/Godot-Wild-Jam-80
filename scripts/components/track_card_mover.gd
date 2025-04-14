@@ -4,6 +4,7 @@ extends Node
 signal track_card_final_position_dropped(track_card)
 
 @export var play_areas: Array[PlayArea]
+@export var start_finish_tiles: Array[Vector2i]
 
 var starting_orientation
 
@@ -61,7 +62,6 @@ func _on_track_card_drag_started(track_card: TrackCard) -> void:
 		play_areas[i].play_area_track_card_grid.remove_track_card(tile + track_card.secondary_card_halves[track_card.card_orientation])
 
 
-
 func _on_track_card_dropped(starting_position: Vector2, track_card: TrackCard) -> void:
 	_set_highlighters(false)
 
@@ -77,6 +77,12 @@ func _on_track_card_dropped(starting_position: Vector2, track_card: TrackCard) -
 	var new_area := play_areas[drop_area_index]
 	var new_tile := new_area.get_hovered_tile()
 	var secondary_new_tile = new_tile + track_card.secondary_card_halves[track_card.card_orientation]
+
+
+	for tile in start_finish_tiles:
+		if new_tile == tile or secondary_new_tile == tile:
+			_reset_track_card_to_starting_position(track_card, starting_position, starting_orientation)
+			return
 
 
 	if play_areas[drop_area_index].play_area_track_card_grid.is_tile_occupied(new_tile)  or play_areas[drop_area_index].play_area_track_card_grid.is_tile_occupied(secondary_new_tile):
