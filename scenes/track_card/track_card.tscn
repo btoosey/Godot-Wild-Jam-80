@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnl03j1mq3sp4"]
 
 [ext_resource type="Script" path="res://scenes/track_card/track_card.gd" id="1_kwd41"]
-[ext_resource type="Resource" uid="uid://nkx03tnwarhs" path="res://data/track_cards/straight_short_01.tres" id="2_6bv0l"]
+[ext_resource type="Resource" uid="uid://01rgt6dtaxbw" path="res://data/track_cards/j_corner_long_01.tres" id="2_7ku8o"]
 [ext_resource type="Texture2D" uid="uid://bfjpbtabtgtfj" path="res://assets/track_cards/track_card_atlas.png" id="2_eu5ty"]
 [ext_resource type="Script" path="res://scenes/track_card/components/drag_and_drop.gd" id="4_a2fyf"]
 [ext_resource type="Script" path="res://scenes/track_card/components/rotate.gd" id="5_pbtqp"]
@@ -11,7 +11,7 @@ size = Vector2(58, 122)
 
 [node name="TrackCard" type="Area2D" groups=["track_cards"]]
 script = ExtResource("1_kwd41")
-stats = ExtResource("2_6bv0l")
+stats = ExtResource("2_7ku8o")
 
 [node name="TrackCardSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 32)
@@ -33,3 +33,9 @@ target = NodePath("../..")
 script = ExtResource("5_pbtqp")
 target = NodePath("../..")
 rotation_degrees = 90
+
+[node name="CircuitLinks" type="Node2D" parent="."]
+
+[node name="CircuitLink1" type="Marker2D" parent="CircuitLinks"]
+
+[node name="CircuitLink2" type="Marker2D" parent="CircuitLinks"]

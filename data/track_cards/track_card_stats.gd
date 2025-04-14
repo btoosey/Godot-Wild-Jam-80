@@ -18,3 +18,7 @@ enum CardType {
 
 @export_category("Visuals")
 @export var skin_coordinates: Vector2i
+
+@export_category("Circuit Link Locations")
+@export var circuit_link_1: Vector2
+@export var circuit_link_2: Vector2
