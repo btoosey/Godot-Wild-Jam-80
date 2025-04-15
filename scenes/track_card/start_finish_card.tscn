@@ -14,3 +14,6 @@ position = Vector2(-64, 32)
 
 [node name="CircuitLink2" type="Marker2D" parent="CircuitLinks"]
 position = Vector2(64, 32)
+
+[node name="StartFinishLink" type="Marker2D" parent="CircuitLinks"]
+position = Vector2(0, 32)

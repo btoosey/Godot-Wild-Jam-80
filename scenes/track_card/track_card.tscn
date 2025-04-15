@@ -17,7 +17,7 @@ stats = ExtResource("2_7ku8o")
 position = Vector2(0, 32)
 texture = ExtResource("2_eu5ty")
 region_enabled = true
-region_rect = Rect2(64, 0, 64, 128)
+region_rect = Rect2(0, 128, 64, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 32)
@@ -37,5 +37,7 @@ rotation_degrees = 90
 [node name="CircuitLinks" type="Node2D" parent="."]
 
 [node name="CircuitLink1" type="Marker2D" parent="CircuitLinks"]
+position = Vector2(-32, 0)
 
 [node name="CircuitLink2" type="Marker2D" parent="CircuitLinks"]
+position = Vector2(0, 96)
