@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=16 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/background/background_tile.png" id="2_57wjm"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://b44jgapopo1mv" path="res://data/track_cards/straight_long_01.tres" id="9_h4rs8"]
 [ext_resource type="Resource" uid="uid://bvkqr6ki1bc8p" path="res://data/track_cards/c_corner_01.tres" id="10_7x0yo"]
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_card/start_finish_card.tscn" id="11_xgl4w"]
+[ext_resource type="Script" path="res://scripts/components/circuit_manager.gd" id="12_25i6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -84,5 +85,9 @@ start_finish_tiles = Array[Vector2i]([Vector2i(11, 5), Vector2i(12, 5), Vector2i
 
 [node name="Components" type="Node" parent="."]
 
-[node name="StartFinishCard" parent="." instance=ExtResource("11_xgl4w")]
+[node name="CircuitManager" type="Node" parent="." node_paths=PackedStringArray("track_card_mover")]
+script = ExtResource("12_25i6v")
+track_card_mover = NodePath("../TrackCardMover")
+
+[node name="StartFinishCard" parent="CircuitManager" instance=ExtResource("11_xgl4w")]
 position = Vector2(768, 384)
