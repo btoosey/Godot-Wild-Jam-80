@@ -1,7 +1,8 @@
+class_name CircuitManager
 extends Node
 
 @export var track_card_mover: TrackCardMover
-@onready var start_finish_card: Node2D = $CircuitManager/StartFinishCard
+@onready var start_finish_card: Node2D = $StartFinishCard
 
 
 var circuit_cards:= []
