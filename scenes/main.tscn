@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=14 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/background/background_tile.png" id="2_57wjm"]
@@ -6,11 +6,8 @@
 [ext_resource type="Script" path="res://scripts/components/camera/camera_drag.gd" id="2_tjfnl"]
 [ext_resource type="Script" path="res://scripts/play_area.gd" id="3_ax4fa"]
 [ext_resource type="Script" path="res://scripts/track_card_grid.gd" id="3_ew15e"]
-[ext_resource type="PackedScene" uid="uid://bnl03j1mq3sp4" path="res://scenes/track_cards/track_card.tscn" id="4_goy0x"]
 [ext_resource type="Script" path="res://scripts/components/tile_highlighter.gd" id="5_fb313"]
 [ext_resource type="Script" path="res://scripts/components/track_card_mover.gd" id="6_0x7j2"]
-[ext_resource type="Resource" uid="uid://b44jgapopo1mv" path="res://data/track_cards/straight_long_01.tres" id="9_h4rs8"]
-[ext_resource type="Resource" uid="uid://bvkqr6ki1bc8p" path="res://data/track_cards/c_corner_01.tres" id="10_7x0yo"]
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_cards/start_finish_card.tscn" id="11_xgl4w"]
 [ext_resource type="Script" path="res://scripts/components/circuit_manager.gd" id="12_25i6v"]
 [ext_resource type="Script" path="res://scripts/components/track_card_spawner.gd" id="14_s77h4"]
@@ -66,18 +63,6 @@ camera_left_limit = 288
 camera_right_limit = 1184
 camera_top_limit = 162
 camera_bottom_limit = 670
-
-[node name="TrackCard" parent="." instance=ExtResource("4_goy0x")]
-position = Vector2(601, 380)
-stats = ExtResource("9_h4rs8")
-
-[node name="TrackCard2" parent="." instance=ExtResource("4_goy0x")]
-position = Vector2(668, 469)
-stats = ExtResource("10_7x0yo")
-
-[node name="TrackCard3" parent="." instance=ExtResource("4_goy0x")]
-position = Vector2(960, 430)
-stats = ExtResource("10_7x0yo")
 
 [node name="TrackCardMover" type="Node" parent="." node_paths=PackedStringArray("play_areas")]
 script = ExtResource("6_0x7j2")
