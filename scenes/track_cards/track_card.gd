@@ -1,3 +1,4 @@
+@tool
 class_name TrackCard
 extends Area2D
 
@@ -5,6 +6,9 @@ extends Area2D
 
 @onready var track_card_sprite: Sprite2D = $TrackCardSprite
 @onready var drag_and_drop: DragAndDrop = $Components/DragAndDrop
+
+@onready var circuit_link_1: Marker2D = $CircuitLinks/CircuitLink1
+@onready var circuit_link_2: Marker2D = $CircuitLinks/CircuitLink2
 
 var dragging := false
 var card_orientation := 0
@@ -27,6 +31,9 @@ func set_stats(value: TrackCardStats) -> void:
 		await ready
 
 	track_card_sprite.region_rect.position = Vector2(stats.skin_coordinates) * Main.TRACK_CARD_SIZE
+	
+	circuit_link_1.position = stats.circuit_link_1
+	circuit_link_2.position = stats.circuit_link_2
 
 
 func rotate_card(deg) -> void:

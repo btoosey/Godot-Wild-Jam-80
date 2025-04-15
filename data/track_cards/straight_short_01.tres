@@ -6,3 +6,5 @@
 script = ExtResource("1_7my4d")
 card_type = 1
 skin_coordinates = Vector2i(1, 0)
+circuit_link_1 = Vector2(-32, 0)
+circuit_link_2 = Vector2(32, 0)
