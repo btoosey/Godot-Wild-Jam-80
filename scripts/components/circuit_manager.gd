@@ -1,6 +1,9 @@
 class_name CircuitManager
 extends Node
 
+signal circuit_complete
+signal circuit_incomplete
+
 @export var track_card_mover: TrackCardMover
 
 @onready var start_finish_card: Node2D = $StartFinishCard
@@ -66,6 +69,12 @@ func check_and_add_to_circuit(card: TrackCard) -> void:
 			add_to_circuit_array_start(card)
 
 
+	if is_circuit_complete():
+		circuit_complete.emit()
+	else:
+		circuit_incomplete.emit()
+
+
 func add_to_circuit_array_start(card: TrackCard) -> void:
 	circuit_cards.push_front(card)
 	check_for_floating_card(card)
@@ -113,9 +122,8 @@ func check_for_floating_card(card: TrackCard) -> void:
 		if circuit_cards.has(track_card):
 			continue
 
-		if check_for_matching_links(track_card, circuit_cards[-1]):
-			check_and_add_to_circuit(track_card)
-		elif check_for_matching_links(track_card, circuit_cards[0]):
-			check_and_add_to_circuit(track_card)
-
-		break
+		if check_for_matching_links(track_card, card):
+			if check_for_matching_links(track_card, circuit_cards[-1]):
+				check_and_add_to_circuit(track_card)
+			elif check_for_matching_links(track_card, circuit_cards[0]):
+				check_and_add_to_circuit(track_card)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=16 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/background/background_tile.png" id="2_57wjm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/components/track_card_mover.gd" id="6_0x7j2"]
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_cards/start_finish_card.tscn" id="11_xgl4w"]
 [ext_resource type="Script" path="res://scripts/components/circuit_manager.gd" id="12_25i6v"]
+[ext_resource type="Script" path="res://scripts/ui/circuit_completion_label.gd" id="12_iiquq"]
 [ext_resource type="Script" path="res://scripts/components/track_card_spawner.gd" id="14_s77h4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
@@ -21,6 +22,10 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_qaaug"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_roq4t")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2psnu"]
+font_size = 32
+font_color = Color(0.909804, 0.262745, 0.247059, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jtu5u")
@@ -81,3 +86,17 @@ position = Vector2(768, 384)
 [node name="TrackCardSpawner" type="Node" parent="." node_paths=PackedStringArray("play_area")]
 script = ExtResource("14_s77h4")
 play_area = NodePath("../PlayArea")
+
+[node name="BuildUI" type="CanvasLayer" parent="."]
+
+[node name="CircuitCompletion" type="Label" parent="BuildUI"]
+offset_right = 1.0
+offset_bottom = 23.0
+text = "Circuit Incomplete"
+label_settings = SubResource("LabelSettings_2psnu")
+script = ExtResource("12_iiquq")
+incomplete_colour = Color(0.910619, 0.26386, 0.248811, 1)
+complete_colour = Color(0.239546, 0.675515, 0.39479, 1)
+
+[connection signal="circuit_complete" from="CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_incomplete" from="CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
