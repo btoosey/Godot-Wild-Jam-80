@@ -58,9 +58,9 @@ func _on_track_card_final_position_dropped(track_card: TrackCard) -> void:
 
 func check_and_add_to_circuit(card: TrackCard) -> void:
 	if circuit_cards.size() == 1:
-		if card.circuit_link_1.global_position == start_finish_card.circuit_link_1.global_position or card.circuit_link_2.global_position == start_finish_card.circuit_link_1.global_position:
+		if round(card.circuit_link_1.global_position) == round(start_finish_card.circuit_link_1.global_position) or round(card.circuit_link_2.global_position) == round(start_finish_card.circuit_link_1.global_position):
 			add_to_circuit_array_start(card)
-		elif card.circuit_link_1.global_position == start_finish_card.circuit_link_2.global_position or card.circuit_link_2.global_position == start_finish_card.circuit_link_2.global_position:
+		elif round(card.circuit_link_1.global_position) == round(start_finish_card.circuit_link_2.global_position) or round(card.circuit_link_2.global_position) == round(start_finish_card.circuit_link_2.global_position):
 			add_to_circuit_array_end(card)
 	else:
 		if check_for_matching_links(card, circuit_cards[-1]):
@@ -112,7 +112,7 @@ func is_circuit_complete() -> bool:
 
 
 func check_for_matching_links(card_1, card_2) -> bool:
-	if card_1.circuit_link_1.global_position == card_2.circuit_link_1.global_position or card_1.circuit_link_1.global_position == card_2.circuit_link_2.global_position or card_1.circuit_link_2.global_position == card_2.circuit_link_1.global_position or card_1.circuit_link_2.global_position == card_2.circuit_link_2.global_position:
+	if round(card_1.circuit_link_1.global_position) == round(card_2.circuit_link_1.global_position) or round(card_1.circuit_link_1.global_position) == round(card_2.circuit_link_2.global_position) or round(card_1.circuit_link_2.global_position) == round(card_2.circuit_link_1.global_position) or round(card_1.circuit_link_2.global_position) == round(card_2.circuit_link_2.global_position):
 		return true
 	return false
 
