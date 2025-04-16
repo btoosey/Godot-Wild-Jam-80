@@ -5,9 +5,9 @@ const CELL_SIZE := Vector2(64, 64)
 const TRACK_CARD_SIZE := Vector2(64, 128)
 
 
-@onready var track_card_mover: TrackCardMover = $TrackCardMover
-@onready var track_card_spawner: TrackCardSpawner = $TrackCardSpawner
-@onready var circuit_manager: CircuitManager = $CircuitManager
+@onready var track_card_mover: TrackCardMover = $Components/TrackCardMover
+@onready var track_card_spawner: TrackCardSpawner = $Components/TrackCardSpawner
+@onready var circuit_manager: CircuitManager = $Components/CircuitManager
 
 
 func _ready() -> void:

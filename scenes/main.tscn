@@ -69,23 +69,23 @@ camera_right_limit = 1152
 camera_top_limit = 180
 camera_bottom_limit = 652
 
-[node name="TrackCardMover" type="Node" parent="." node_paths=PackedStringArray("play_areas")]
-script = ExtResource("6_0x7j2")
-play_areas = [NodePath("../PlayArea")]
-start_finish_tiles = Array[Vector2i]([Vector2i(11, 5), Vector2i(12, 5), Vector2i(11, 6), Vector2i(12, 6)])
-
 [node name="Components" type="Node" parent="."]
 
-[node name="CircuitManager" type="Node" parent="." node_paths=PackedStringArray("track_card_mover")]
+[node name="TrackCardMover" type="Node" parent="Components" node_paths=PackedStringArray("play_areas")]
+script = ExtResource("6_0x7j2")
+play_areas = [NodePath("../../PlayArea")]
+start_finish_tiles = Array[Vector2i]([Vector2i(11, 5), Vector2i(12, 5), Vector2i(11, 6), Vector2i(12, 6)])
+
+[node name="CircuitManager" type="Node" parent="Components" node_paths=PackedStringArray("track_card_mover")]
 script = ExtResource("12_25i6v")
 track_card_mover = NodePath("../TrackCardMover")
 
-[node name="StartFinishCard" parent="CircuitManager" instance=ExtResource("11_xgl4w")]
+[node name="StartFinishCard" parent="Components/CircuitManager" instance=ExtResource("11_xgl4w")]
 position = Vector2(768, 384)
 
-[node name="TrackCardSpawner" type="Node" parent="." node_paths=PackedStringArray("play_area")]
+[node name="TrackCardSpawner" type="Node" parent="Components" node_paths=PackedStringArray("play_area")]
 script = ExtResource("14_s77h4")
-play_area = NodePath("../PlayArea")
+play_area = NodePath("../../PlayArea")
 
 [node name="BuildUI" type="CanvasLayer" parent="."]
 
@@ -98,5 +98,5 @@ script = ExtResource("12_iiquq")
 incomplete_colour = Color(0.910619, 0.26386, 0.248811, 1)
 complete_colour = Color(0.239546, 0.675515, 0.39479, 1)
 
-[connection signal="circuit_complete" from="CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
-[connection signal="circuit_incomplete" from="CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="circuit_complete" from="Components/CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_incomplete" from="Components/CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
