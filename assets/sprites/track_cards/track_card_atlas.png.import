@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfjpbtabtgtfj"
-path="res://.godot/imported/track_card_atlas.png-0888737bb57c4ce18667319a80fef68c.ctex"
+path="res://.godot/imported/track_card_atlas.png-7ad4619404b36f91d861d08ac6e237db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/track_cards/track_card_atlas.png"
-dest_files=["res://.godot/imported/track_card_atlas.png-0888737bb57c4ce18667319a80fef68c.ctex"]
+source_file="res://assets/sprites/track_cards/track_card_atlas.png"
+dest_files=["res://.godot/imported/track_card_atlas.png-7ad4619404b36f91d861d08ac6e237db.ctex"]
 
 [params]
 
