@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=22 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -10,8 +10,14 @@
 [ext_resource type="Script" path="res://scripts/components/track_card_mover.gd" id="6_0x7j2"]
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_cards/start_finish_card.tscn" id="11_xgl4w"]
 [ext_resource type="Script" path="res://scripts/components/circuit_manager.gd" id="12_25i6v"]
-[ext_resource type="Script" path="res://scripts/ui/circuit_completion_label.gd" id="12_iiquq"]
+[ext_resource type="Script" path="res://scripts/ui/setup_ui/circuit_completion_label.gd" id="12_iiquq"]
+[ext_resource type="Script" path="res://scripts/components/game_state_machine/game_state_machine.gd" id="12_k7eph"]
+[ext_resource type="Script" path="res://scripts/components/game_state_machine/game_states/game_setup_state.gd" id="13_8wt13"]
+[ext_resource type="Script" path="res://scripts/components/game_state_machine/game_states/game_start_state.gd" id="13_hlcgw"]
 [ext_resource type="Script" path="res://scripts/components/track_card_spawner.gd" id="14_s77h4"]
+[ext_resource type="Script" path="res://scripts/components/game_state_machine/game_states/game_race_state.gd" id="15_dn82q"]
+[ext_resource type="Script" path="res://scripts/ui/setup_ui/setup_ui.gd" id="15_r6i58"]
+[ext_resource type="Script" path="res://scripts/ui/setup_ui/start_race_button.gd" id="16_i23ju"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -74,7 +80,7 @@ camera_bottom_limit = 588
 [node name="TrackCardMover" type="Node" parent="Components" node_paths=PackedStringArray("play_areas")]
 script = ExtResource("6_0x7j2")
 play_areas = [NodePath("../../PlayArea")]
-start_finish_tiles = Array[Vector2i]([Vector2i(11, 5), Vector2i(12, 5), Vector2i(11, 6), Vector2i(12, 6)])
+start_finish_tiles = Array[Vector2i]([Vector2i(5, 5), Vector2i(6, 5), Vector2i(5, 6), Vector2i(6, 6)])
 
 [node name="CircuitManager" type="Node" parent="Components" node_paths=PackedStringArray("track_card_mover")]
 script = ExtResource("12_25i6v")
@@ -87,9 +93,25 @@ position = Vector2(384, 384)
 script = ExtResource("14_s77h4")
 play_area = NodePath("../../PlayArea")
 
-[node name="BuildUI" type="CanvasLayer" parent="."]
+[node name="GameStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("12_k7eph")
+initial_state = NodePath("GameSetupState")
 
-[node name="CircuitCompletion" type="Label" parent="BuildUI"]
+[node name="GameStartState" type="Node" parent="Components/GameStateMachine"]
+script = ExtResource("13_hlcgw")
+
+[node name="GameSetupState" type="Node" parent="Components/GameStateMachine"]
+script = ExtResource("13_8wt13")
+state = 1
+
+[node name="GameRaceState" type="Node" parent="Components/GameStateMachine"]
+script = ExtResource("15_dn82q")
+state = 2
+
+[node name="SetupUI" type="CanvasLayer" parent="."]
+script = ExtResource("15_r6i58")
+
+[node name="CircuitCompletion" type="Label" parent="SetupUI"]
 offset_right = 1.0
 offset_bottom = 23.0
 text = "Circuit Incomplete"
@@ -98,5 +120,21 @@ script = ExtResource("12_iiquq")
 incomplete_colour = Color(0.910619, 0.26386, 0.248811, 1)
 complete_colour = Color(0.239546, 0.675515, 0.39479, 1)
 
-[connection signal="circuit_complete" from="Components/CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
-[connection signal="circuit_incomplete" from="Components/CircuitManager" to="BuildUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
+[node name="StartRaceButton" type="Button" parent="SetupUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Start Race"
+script = ExtResource("16_i23ju")
+
+[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
