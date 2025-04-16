@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=19 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_cards/start_finish_card.tscn" id="11_xgl4w"]
 [ext_resource type="Script" path="res://scripts/components/circuit_manager.gd" id="12_25i6v"]
 [ext_resource type="Script" path="res://scripts/ui/circuit_completion_label.gd" id="12_iiquq"]
+[ext_resource type="Script" path="res://scripts/components/game_state_machine/game_state_machine.gd" id="12_k7eph"]
+[ext_resource type="Script" path="res://scripts/components/game_state_machine/game_states/game_setup_state.gd" id="13_8wt13"]
+[ext_resource type="Script" path="res://scripts/components/game_state_machine/game_states/game_start_state.gd" id="13_hlcgw"]
 [ext_resource type="Script" path="res://scripts/components/track_card_spawner.gd" id="14_s77h4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
@@ -86,6 +89,17 @@ position = Vector2(384, 384)
 [node name="TrackCardSpawner" type="Node" parent="Components" node_paths=PackedStringArray("play_area")]
 script = ExtResource("14_s77h4")
 play_area = NodePath("../../PlayArea")
+
+[node name="GameStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("12_k7eph")
+initial_state = NodePath("GameStartState")
+
+[node name="GameStartState" type="Node" parent="Components/GameStateMachine"]
+script = ExtResource("13_hlcgw")
+
+[node name="GameSetupState" type="Node" parent="Components/GameStateMachine"]
+script = ExtResource("13_8wt13")
+state = 1
 
 [node name="BuildUI" type="CanvasLayer" parent="."]
 
