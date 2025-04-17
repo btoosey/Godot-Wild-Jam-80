@@ -10,6 +10,9 @@ extends Area2D
 @onready var circuit_link_1: Marker2D = $CircuitLinks/CircuitLink1
 @onready var circuit_link_2: Marker2D = $CircuitLinks/CircuitLink2
 
+var first_link: Marker2D
+var second_link: Marker2D
+
 var dragging := false
 var card_orientation := 0
 

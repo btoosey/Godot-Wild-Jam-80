@@ -15,7 +15,7 @@ func set_race_start_points() -> void:
 	current_track_card = circuit_manager.start_finish_card
 	path2d_mover.curve.clear_points()
 	path2d_mover.curve.add_point(circuit_manager.start_finish_card.start_finish_link.global_position)
-	path2d_mover.curve.add_point(circuit_manager.start_finish_card.circuit_link_2.global_position)
+	path2d_mover.curve.add_point(circuit_manager.start_finish_card.second_link.global_position)
 
 
 func _on_circuit_mover_track_card_ended() -> void:
@@ -39,8 +39,8 @@ func update_mover_points() -> void:
 	$CircuitMover/PathFollow2D.progress_ratio = 0
 	path2d_mover.curve.clear_points()
 
-	path2d_mover.curve.add_point(current_track_card.circuit_link_1.global_position)
-	path2d_mover.curve.add_point(current_track_card.circuit_link_2.global_position)
+	path2d_mover.curve.add_point(current_track_card.first_link.global_position)
+	path2d_mover.curve.add_point(current_track_card.second_link.global_position)
 
 
 func order_track_cards() -> void:
