@@ -1,11 +1,14 @@
 class_name RaceManager
 extends Node
 
+signal lap_increased(lap)
+
 @onready var circuit_manager: CircuitManager = $"../CircuitManager"
 @onready var path2d_mover = $CircuitMover
 
 var ordered_track_cards: Array
 var current_track_card
+var current_lap := 1
 
 
 func set_race_start_points() -> void:
@@ -16,12 +19,15 @@ func set_race_start_points() -> void:
 
 
 func _on_circuit_mover_track_card_ended() -> void:
-	#check_if_end_of_lap()
-	next_track_card()
+	if current_track_card == ordered_track_cards[-1]:
+		enter_start_finish_straight()
+	else:
+		next_track_card()
 
 
-#func check_if_end_of_lap() -> void:
-	#check_if_race_ended()
+func enter_start_finish_straight() -> void:
+	current_track_card = ordered_track_cards[0]
+	update_mover_points()
 
 
 func next_track_card() -> void:
@@ -44,3 +50,8 @@ func order_track_cards() -> void:
 		temp.append(temp.pop_front())
 
 	ordered_track_cards = temp
+
+
+func _on_area_2d_body_exited(_body: Node2D) -> void:
+	current_lap += 1
+	lap_increased.emit(current_lap)
