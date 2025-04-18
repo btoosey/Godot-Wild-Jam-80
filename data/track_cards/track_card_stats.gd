@@ -22,3 +22,9 @@ enum CardType {
 @export_category("Circuit Link Locations")
 @export var circuit_link_1: Vector2
 @export var circuit_link_2: Vector2
+
+@export_category("Circuit Link OutIn")
+@export var c_1_out: Vector2
+@export var c_2_in: Vector2
+@export var c_2_out: Vector2
+@export var c_1_in: Vector2

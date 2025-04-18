@@ -61,18 +61,26 @@ func check_and_add_to_circuit(card: TrackCard) -> void:
 		if round(card.circuit_link_1.global_position) == round(start_finish_card.circuit_link_1.global_position):
 			card.first_link = card.circuit_link_2
 			card.second_link = card.circuit_link_1
+			card.point_in = card.stats.c_1_in
+			card.point_out = card.stats.c_2_out
 			add_to_circuit_array_start(card)
 		elif round(card.circuit_link_2.global_position) == round(start_finish_card.circuit_link_1.global_position):
 			card.first_link = card.circuit_link_1
 			card.second_link = card.circuit_link_2
+			card.point_in = card.stats.c_2_in
+			card.point_out = card.stats.c_1_out
 			add_to_circuit_array_start(card)
 		elif round(card.circuit_link_1.global_position) == round(start_finish_card.circuit_link_2.global_position):
 			card.first_link = card.circuit_link_1
 			card.second_link = card.circuit_link_2
+			card.point_in = card.stats.c_2_in
+			card.point_out = card.stats.c_1_out
 			add_to_circuit_array_end(card)
 		elif round(card.circuit_link_2.global_position) == round(start_finish_card.circuit_link_2.global_position):
 			card.first_link = card.circuit_link_2
 			card.second_link = card.circuit_link_1
+			card.point_in = card.stats.c_1_in
+			card.point_out = card.stats.c_2_out
 			add_to_circuit_array_end(card)
 	else:
 		if check_for_matching_links(card, circuit_cards[-1]):
@@ -127,18 +135,30 @@ func check_for_matching_links(card_1, card_2) -> bool:
 	if round(card_1.circuit_link_1.global_position) == round(card_2.first_link.global_position):
 		card_1.first_link = card_1.circuit_link_2
 		card_1.second_link = card_1.circuit_link_1
+		if card_1.stats:
+			card_1.point_in = card_1.stats.c_1_in
+			card_1.point_out = card_1.stats.c_2_out
 		return true
 	elif round(card_1.circuit_link_1.global_position) == round(card_2.second_link.global_position):
 		card_1.first_link = card_1.circuit_link_1
 		card_1.second_link = card_1.circuit_link_2
+		if card_1.stats:
+			card_1.point_in = card_1.stats.c_2_in
+			card_1.point_out = card_1.stats.c_1_out
 		return true
 	elif round(card_1.circuit_link_2.global_position) == round(card_2.first_link.global_position):
 		card_1.first_link = card_1.circuit_link_1
 		card_1.second_link = card_1.circuit_link_2
+		if card_1.stats:
+			card_1.point_in = card_1.stats.c_2_in
+			card_1.point_out = card_1.stats.c_1_out
 		return true
 	elif round(card_1.circuit_link_2.global_position) == round(card_2.second_link.global_position):
 		card_1.first_link = card_1.circuit_link_2
 		card_1.second_link = card_1.circuit_link_1
+		if card_1.stats:
+			card_1.point_in = card_1.stats.c_1_in
+			card_1.point_out = card_1.stats.c_2_out
 		return true
 	return false
 

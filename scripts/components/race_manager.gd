@@ -40,7 +40,9 @@ func update_mover_points() -> void:
 	path2d_mover.curve.clear_points()
 
 	path2d_mover.curve.add_point(current_track_card.first_link.global_position)
+	path2d_mover.curve.set_point_out(0, (current_track_card.point_out).rotated(deg_to_rad(90 * current_track_card.card_orientation)))
 	path2d_mover.curve.add_point(current_track_card.second_link.global_position)
+	path2d_mover.curve.set_point_in(1, (current_track_card.point_in).rotated(deg_to_rad(90 * current_track_card.card_orientation)))
 
 
 func order_track_cards() -> void:

@@ -7,6 +7,11 @@ extends Node2D
 var first_link: Marker2D
 var second_link: Marker2D
 
+var point_out := Vector2(0, 0)
+var point_in := Vector2(0, 0)
+
+var stats = null
+var card_orientation = 0
 
 func _ready() -> void:
 	first_link = circuit_link_1

@@ -8,3 +8,7 @@ card_type = 8
 skin_coordinates = Vector2i(3, 1)
 circuit_link_1 = Vector2(-32, 0)
 circuit_link_2 = Vector2(32, 64)
+c_1_out = Vector2(76, 0)
+c_2_in = Vector2(-76, 0)
+c_2_out = Vector2(-76, 0)
+c_1_in = Vector2(76, 0)
