@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=29 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -17,7 +17,11 @@
 [ext_resource type="Script" path="res://scripts/components/track_card_spawner.gd" id="14_s77h4"]
 [ext_resource type="Script" path="res://scripts/components/game_state_machine/game_states/game_race_state.gd" id="15_dn82q"]
 [ext_resource type="Script" path="res://scripts/ui/setup_ui/setup_ui.gd" id="15_r6i58"]
+[ext_resource type="Script" path="res://scripts/components/race_manager.gd" id="16_2u0pc"]
 [ext_resource type="Script" path="res://scripts/ui/setup_ui/start_race_button.gd" id="16_i23ju"]
+[ext_resource type="Script" path="res://scenes/circuit_mover/circuit_mover.gd" id="19_0a4w3"]
+[ext_resource type="PackedScene" uid="uid://04j83wifmqkh" path="res://scenes/player/player.tscn" id="19_8oqdl"]
+[ext_resource type="Script" path="res://scripts/ui/race_ui/lap_counter.gd" id="22_j3vho"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -29,9 +33,19 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_roq4t")
 
+[sub_resource type="Curve2D" id="Curve2D_4hhel"]
+bake_interval = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybjkt"]
+size = Vector2(4, 10)
+
 [sub_resource type="LabelSettings" id="LabelSettings_2psnu"]
 font_size = 32
 font_color = Color(0.909804, 0.262745, 0.247059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ln77r"]
+font_size = 32
+font_color = Color(0, 0.573047, 0.00845426, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jtu5u")
@@ -108,6 +122,25 @@ state = 1
 script = ExtResource("15_dn82q")
 state = 2
 
+[node name="RaceManager" type="Node" parent="Components"]
+script = ExtResource("16_2u0pc")
+
+[node name="CircuitMover" type="Path2D" parent="Components/RaceManager"]
+curve = SubResource("Curve2D_4hhel")
+script = ExtResource("19_0a4w3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Components/RaceManager/CircuitMover"]
+loop = false
+
+[node name="Player" parent="Components/RaceManager/CircuitMover/PathFollow2D" instance=ExtResource("19_8oqdl")]
+z_index = 10
+
+[node name="Area2D" type="Area2D" parent="Components/RaceManager"]
+position = Vector2(365, 416)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Components/RaceManager/Area2D"]
+shape = SubResource("RectangleShape2D_ybjkt")
+
 [node name="SetupUI" type="CanvasLayer" parent="."]
 script = ExtResource("15_r6i58")
 
@@ -133,8 +166,26 @@ grow_vertical = 0
 text = "Start Race"
 script = ExtResource("16_i23ju")
 
+[node name="RaceUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="LapCounter" type="Label" parent="RaceUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_right = 21.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Lap 1"
+label_settings = SubResource("LabelSettings_ln77r")
+script = ExtResource("22_j3vho")
+
 [connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
 [connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
 [connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
 [connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="lap_increased" from="Components/RaceManager" to="RaceUI/LapCounter" method="_on_race_manager_lap_increased"]
+[connection signal="track_card_ended" from="Components/RaceManager/CircuitMover" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
+[connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]

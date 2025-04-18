@@ -15,7 +15,7 @@ func _ready() -> void:
 	var t_card_4 := preload("res://data/track_cards/l_corner_long_01.tres")
 	var t_card_5 := preload("res://data/track_cards/j_corner_long_01.tres")
 	var tween := create_tween()
-	
+
 	tween.tween_callback(spawn_track_card.bind(t_card_1))
 	tween.tween_callback(spawn_track_card.bind(t_card_2))
 	tween.tween_callback(spawn_track_card.bind(t_card_3))

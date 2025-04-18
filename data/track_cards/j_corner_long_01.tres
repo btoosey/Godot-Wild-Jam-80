@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="TrackCardStats" load_steps=2 format=3 uid="uid://01rgt6dtaxbw"]
+[gd_resource type="Resource" script_class="TrackCardStats" load_steps=2 format=3 uid="uid://dreawm5knayh8"]
 
-[ext_resource type="Script" path="res://data/track_cards/track_card_stats.gd" id="1_ldwtm"]
+[ext_resource type="Script" path="res://data/track_cards/track_card_stats.gd" id="1_w8q78"]
 
 [resource]
-script = ExtResource("1_ldwtm")
-card_type = 5
-skin_coordinates = Vector2i(0, 1)
-circuit_link_1 = Vector2(-32, 0)
+script = ExtResource("1_w8q78")
+card_type = 6
+skin_coordinates = Vector2i(1, 1)
+circuit_link_1 = Vector2(32, 0)
 circuit_link_2 = Vector2(0, 96)
+c_1_out = Vector2(-38, 0)
+c_2_in = Vector2(0, -102)
+c_2_out = Vector2(0, -102)
+c_1_in = Vector2(-38, 0)
