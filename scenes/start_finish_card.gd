@@ -13,6 +13,9 @@ var point_in := Vector2(0, 0)
 var stats = null
 var card_orientation = 0
 
+var speed_threshold = 0
+
+
 func _ready() -> void:
 	first_link = circuit_link_1
 	second_link = circuit_link_2
