@@ -125,9 +125,10 @@ state = 2
 [node name="RaceManager" type="Node" parent="Components"]
 script = ExtResource("16_2u0pc")
 
-[node name="CircuitMover" type="Path2D" parent="Components/RaceManager"]
+[node name="CircuitMover" type="Path2D" parent="Components/RaceManager" node_paths=PackedStringArray("race_manager")]
 curve = SubResource("Curve2D_4hhel")
 script = ExtResource("19_0a4w3")
+race_manager = NodePath("..")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Components/RaceManager/CircuitMover"]
 loop = false

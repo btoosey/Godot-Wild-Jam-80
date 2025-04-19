@@ -28,3 +28,17 @@ enum CardType {
 @export var c_2_in: Vector2
 @export var c_2_out: Vector2
 @export var c_1_in: Vector2
+
+@export_category("Speed Limits")
+@export var caution_min_limit_1: float
+@export var caution_max_limit_1: float
+@export var speed_min_limit_1: float
+@export var speed_max_limit_1: float
+
+@export var caution_min_limit_2: float
+@export var caution_max_limit_2: float
+@export var speed_min_limit_2: float
+@export var speed_max_limit_2: float 
+
+@export_category("Speed Threshold")
+@export var speed_threshold: float

@@ -16,6 +16,18 @@ var second_link: Marker2D
 var point_out := Vector2(0, 0)
 var point_in := Vector2(0, 0)
 
+var caution_min_limit_1: float
+var caution_max_limit_1: float
+var speed_min_limit_1: float
+var speed_max_limit_1: float
+
+var caution_min_limit_2: float
+var caution_max_limit_2: float
+var speed_min_limit_2: float
+var speed_max_limit_2: float
+
+var speed_threshold: float
+
 var dragging := false
 var card_orientation := 0
 
@@ -40,6 +52,18 @@ func set_stats(value: TrackCardStats) -> void:
 	
 	circuit_link_1.position = stats.circuit_link_1
 	circuit_link_2.position = stats.circuit_link_2
+
+	caution_min_limit_1 = stats.caution_min_limit_1
+	caution_max_limit_1 = stats.caution_max_limit_1
+	speed_min_limit_1 = stats.speed_min_limit_1
+	speed_max_limit_1 = stats.speed_max_limit_1
+
+	caution_min_limit_2 = stats.caution_min_limit_2
+	caution_max_limit_2 = stats.caution_max_limit_2
+	speed_min_limit_2 = stats.speed_min_limit_2
+	speed_max_limit_2 = stats.speed_max_limit_2
+
+	speed_threshold = stats.speed_threshold
 
 
 func rotate_card(deg) -> void:
