@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=40 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -37,6 +37,250 @@ sources/0 = SubResource("TileSetAtlasSource_roq4t")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybjkt"]
 size = Vector2(4, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_08m1d"]
+resource_local_to_scene = true
+radius = 6.0
+
+[sub_resource type="Curve2D" id="Curve2D_1blyj"]
+
+[sub_resource type="GDScript" id="GDScript_inwqj"]
+script/source = "extends Path2D
+
+signal track_card_ended
+
+@onready var path_follow_2d: PathFollow2D = $PathFollow2D
+@export var acceleration := 0.02
+
+var current_track_card
+var current_lap := 1
+
+var enabled = false
+var speed = 0
+var top_speed = 0.14
+var can_accelerate = true
+
+
+func _process(_delta: float) -> void:
+	if !enabled:
+		return
+
+	if speed + acceleration <= top_speed and can_accelerate:
+		accelerate()
+
+	path_follow_2d.progress += speed
+
+	if path_follow_2d.progress_ratio == 1:
+		track_card_ended.emit()
+
+	if current_track_card.speed_threshold == 0:
+		return
+
+	if current_track_card.first_link == current_track_card.circuit_link_1:
+		if (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+	else:
+		if (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+
+
+func accelerate() -> void:
+	speed += acceleration + speed_noise()
+	speed = clampf(speed, 0, top_speed)
+	can_accelerate = false
+	$AccelerationTimer.start()
+
+
+func _on_acceleration_timer_timeout() -> void:
+	can_accelerate = true
+
+
+func speed_noise() -> float:
+	var min_noise = 0 - acceleration
+	return randf_range(min_noise, acceleration)
+"
+
+[sub_resource type="Curve2D" id="Curve2D_nadqk"]
+
+[sub_resource type="GDScript" id="GDScript_1xpv2"]
+script/source = "extends Path2D
+
+signal track_card_ended
+
+@onready var path_follow_2d: PathFollow2D = $PathFollow2D
+@export var acceleration := 0.02
+
+var current_track_card
+var current_lap := 1
+
+var enabled = false
+var speed = 0
+var top_speed = 0.14
+var can_accelerate = true
+
+
+func _process(_delta: float) -> void:
+	if !enabled:
+		return
+
+	if speed + acceleration <= top_speed and can_accelerate:
+		accelerate()
+
+	path_follow_2d.progress += speed
+
+	if path_follow_2d.progress_ratio == 1:
+		track_card_ended.emit()
+
+	if current_track_card.speed_threshold == 0:
+		return
+
+	if current_track_card.first_link == current_track_card.circuit_link_1:
+		if (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+	else:
+		if (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+
+
+func accelerate() -> void:
+	speed += acceleration + speed_noise()
+	speed = clampf(speed, 0, top_speed)
+	can_accelerate = false
+	$AccelerationTimer.start()
+
+
+func _on_acceleration_timer_timeout() -> void:
+	can_accelerate = true
+
+
+func speed_noise() -> float:
+	var min_noise = 0 - acceleration
+	return randf_range(min_noise, acceleration)
+"
+
+[sub_resource type="Curve2D" id="Curve2D_syl6s"]
+
+[sub_resource type="GDScript" id="GDScript_4y8bt"]
+script/source = "extends Path2D
+
+signal track_card_ended
+
+@onready var path_follow_2d: PathFollow2D = $PathFollow2D
+@export var acceleration := 0.02
+
+var current_track_card
+var current_lap := 1
+
+var enabled = false
+var speed = 0
+var top_speed = 0.14
+var can_accelerate = true
+
+
+func _process(_delta: float) -> void:
+	if !enabled:
+		return
+
+	if speed + acceleration <= top_speed and can_accelerate:
+		accelerate()
+
+	path_follow_2d.progress += speed
+
+	if path_follow_2d.progress_ratio == 1:
+		track_card_ended.emit()
+
+	if current_track_card.speed_threshold == 0:
+		return
+
+	if current_track_card.first_link == current_track_card.circuit_link_1:
+		if (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+	else:
+		if (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+
+
+func accelerate() -> void:
+	speed += acceleration + speed_noise()
+	speed = clampf(speed, 0, top_speed)
+	can_accelerate = false
+	$AccelerationTimer.start()
+
+
+func _on_acceleration_timer_timeout() -> void:
+	can_accelerate = true
+
+
+func speed_noise() -> float:
+	var min_noise = 0 - acceleration
+	return randf_range(min_noise, acceleration)
+"
+
+[sub_resource type="Curve2D" id="Curve2D_wpn4w"]
+
+[sub_resource type="GDScript" id="GDScript_ug6ft"]
+script/source = "extends Path2D
+
+signal track_card_ended
+
+@onready var path_follow_2d: PathFollow2D = $PathFollow2D
+@export var acceleration := 0.02
+
+var current_track_card
+var current_lap := 1
+
+var enabled = false
+var speed = 0
+var top_speed = 0.14
+var can_accelerate = true
+
+
+func _process(_delta: float) -> void:
+	if !enabled:
+		return
+
+	if speed + acceleration <= top_speed and can_accelerate:
+		accelerate()
+
+	path_follow_2d.progress += speed
+
+	if path_follow_2d.progress_ratio == 1:
+		track_card_ended.emit()
+
+	if current_track_card.speed_threshold == 0:
+		return
+
+	if current_track_card.first_link == current_track_card.circuit_link_1:
+		if (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+	else:
+		if (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_2):
+			if speed >= current_track_card.speed_threshold:
+				print(\"SPIN!\")
+
+
+func accelerate() -> void:
+	speed += acceleration + speed_noise()
+	speed = clampf(speed, 0, top_speed)
+	can_accelerate = false
+	$AccelerationTimer.start()
+
+
+func _on_acceleration_timer_timeout() -> void:
+	can_accelerate = true
+
+
+func speed_noise() -> float:
+	var min_noise = 0 - acceleration
+	return randf_range(min_noise, acceleration)
+"
 
 [sub_resource type="Curve2D" id="Curve2D_4hhel"]
 bake_interval = 4.0
@@ -137,7 +381,37 @@ shape = SubResource("RectangleShape2D_ybjkt")
 script = ExtResource("17_os5gd")
 
 [node name="CPURacerPath" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
-z_index = 3
+
+[node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath/PathFollow2D/CharacterBody2D" index="1"]
+shape = SubResource("CircleShape2D_08m1d")
+
+[node name="CPURacerPath2" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
+curve = SubResource("Curve2D_1blyj")
+script = SubResource("GDScript_inwqj")
+
+[node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath2/PathFollow2D/CharacterBody2D" index="1"]
+shape = SubResource("CircleShape2D_08m1d")
+
+[node name="CPURacerPath3" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
+curve = SubResource("Curve2D_nadqk")
+script = SubResource("GDScript_1xpv2")
+
+[node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath3/PathFollow2D/CharacterBody2D" index="1"]
+shape = SubResource("CircleShape2D_08m1d")
+
+[node name="CPURacerPath4" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
+curve = SubResource("Curve2D_syl6s")
+script = SubResource("GDScript_4y8bt")
+
+[node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath4/PathFollow2D/CharacterBody2D" index="1"]
+shape = SubResource("CircleShape2D_08m1d")
+
+[node name="CPURacerPath5" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
+curve = SubResource("Curve2D_wpn4w")
+script = SubResource("GDScript_ug6ft")
+
+[node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath5/PathFollow2D/CharacterBody2D" index="1"]
+shape = SubResource("CircleShape2D_08m1d")
 
 [node name="PlayerPath" type="Path2D" parent="Components/RaceManager/RacerPaths" node_paths=PackedStringArray("race_manager")]
 curve = SubResource("Curve2D_4hhel")
@@ -194,7 +468,12 @@ script = ExtResource("22_j3vho")
 [connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
 [connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
 [connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
-[connection signal="lap_increased" from="Components/RaceManager" to="RaceUI/LapCounter" method="_on_race_manager_lap_increased"]
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="track_card_ended" from="Components/RaceManager/RacerPaths/PlayerPath" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
 [connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
+
+[editable path="Components/RaceManager/RacerPaths/CPURacerPath"]
+[editable path="Components/RaceManager/RacerPaths/CPURacerPath2"]
+[editable path="Components/RaceManager/RacerPaths/CPURacerPath3"]
+[editable path="Components/RaceManager/RacerPaths/CPURacerPath4"]
+[editable path="Components/RaceManager/RacerPaths/CPURacerPath5"]
