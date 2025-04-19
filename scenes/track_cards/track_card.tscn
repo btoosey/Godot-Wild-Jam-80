@@ -1,30 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnl03j1mq3sp4"]
+[gd_scene load_steps=7 format=3 uid="uid://bnl03j1mq3sp4"]
 
 [ext_resource type="Script" path="res://scenes/track_cards/track_card.gd" id="1_kwd41"]
 [ext_resource type="Texture2D" uid="uid://bfjpbtabtgtfj" path="res://assets/sprites/track_cards/track_card_atlas.png" id="2_eu5ty"]
-[ext_resource type="Resource" uid="uid://dreawm5knayh8" path="res://data/track_cards/j_corner_long_01.tres" id="2_mun6k"]
+[ext_resource type="Resource" uid="uid://bvbu0lefe8emx" path="res://data/track_cards/j_corner_short_01.tres" id="2_x1cuq"]
 [ext_resource type="Script" path="res://scenes/track_cards/components/drag_and_drop.gd" id="4_a2fyf"]
 [ext_resource type="Script" path="res://scenes/track_cards/components/rotate.gd" id="5_pbtqp"]
-[ext_resource type="Texture2D" uid="uid://dr7sxx52avfp7" path="res://icon.svg" id="6_subak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hpu7"]
 size = Vector2(58, 122)
 
-[sub_resource type="Curve2D" id="Curve2D_35gmu"]
-_data = {
-"points": PackedVector2Array(0, 0, -38, 0, 32, 0, 0, -102, 0, 0, 0, 96)
-}
-point_count = 2
-
 [node name="TrackCard" type="Area2D" groups=["track_cards"]]
 script = ExtResource("1_kwd41")
-stats = ExtResource("2_mun6k")
+stats = ExtResource("2_x1cuq")
 
 [node name="TrackCardSprite" type="Sprite2D" parent="."]
 position = Vector2(0, 32)
 texture = ExtResource("2_eu5ty")
 region_enabled = true
-region_rect = Rect2(64, 128, 64, 128)
+region_rect = Rect2(256, 0, 64, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 32)
@@ -44,19 +37,7 @@ rotation_degrees = 90
 [node name="CircuitLinks" type="Node2D" parent="."]
 
 [node name="CircuitLink1" type="Marker2D" parent="CircuitLinks"]
-position = Vector2(32, 0)
+position = Vector2(32, 64)
 
 [node name="CircuitLink2" type="Marker2D" parent="CircuitLinks"]
 position = Vector2(0, 96)
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_35gmu")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(1.98309, 8.99095)
-rotation = 1.89245
-progress = 34.0653
-
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D"]
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("6_subak")
