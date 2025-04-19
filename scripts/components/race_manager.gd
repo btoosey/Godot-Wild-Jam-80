@@ -61,4 +61,5 @@ func order_track_cards() -> void:
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	body.get_parent().get_parent().current_lap += 1
+	print(body.get_parent().get_parent().current_lap)
 	#lap_increased.emit(body.get_parent().get_parent().current_lap)

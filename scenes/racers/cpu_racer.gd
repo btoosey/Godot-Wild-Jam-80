@@ -10,7 +10,7 @@ var current_lap := 1
 
 var enabled = false
 var speed = 0
-var top_speed = 0.1
+var top_speed = 0.14
 var can_accelerate = true
 
 
@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 	if !enabled:
 		return
 
-	if speed < top_speed and can_accelerate:
+	if speed + acceleration <= top_speed and can_accelerate:
 		accelerate()
 
 	path_follow_2d.progress += speed
@@ -40,10 +40,16 @@ func _process(_delta: float) -> void:
 
 
 func accelerate() -> void:
-	speed += 0.02
+	speed += acceleration + speed_noise()
+	speed = clampf(speed, 0, top_speed)
 	can_accelerate = false
 	$AccelerationTimer.start()
 
 
 func _on_acceleration_timer_timeout() -> void:
 	can_accelerate = true
+
+
+func speed_noise() -> float:
+	var min_noise = 0 - acceleration
+	return randf_range(min_noise, acceleration)

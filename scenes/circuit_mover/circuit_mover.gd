@@ -41,9 +41,7 @@ func _process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("test_player_accelerate"):
 		speed += acceleration
-		print(speed)
 
 	if event.is_action_pressed("test_player_decelerate"):
 		if speed > 0:
 			speed -= acceleration
-		print(speed)
