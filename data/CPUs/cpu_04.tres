@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CPUStats" load_steps=2 format=3 uid="uid://cm51thkxufyhj"]
+
+[ext_resource type="Script" path="res://data/CPUs/cpu_stats.gd" id="1_5555i"]
+
+[resource]
+script = ExtResource("1_5555i")
+cpu_colour = Color(0.298039, 0.345098, 0.827451, 1)
+skin_coordinates = Vector2i(3, 0)
+cpu_name = ""
+three_letter = ""

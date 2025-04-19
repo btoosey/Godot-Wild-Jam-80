@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://be47c88ges0wb"]
+[gd_scene load_steps=7 format=3 uid="uid://be47c88ges0wb"]
 
 [ext_resource type="Script" path="res://scenes/racers/cpu_racer.gd" id="1_6kp67"]
-[ext_resource type="Texture2D" uid="uid://d4g1b10dhudv1" path="res://assets/sprites/racers/cpus/cpu_01.png" id="1_603sg"]
+[ext_resource type="Texture2D" uid="uid://dxa301ve0qpbd" path="res://assets/sprites/racers/cpus/cpu_sprites.png" id="2_kk8c8"]
+[ext_resource type="Script" path="res://scenes/racers/character_body_2d.gd" id="2_uqys7"]
+[ext_resource type="Resource" uid="uid://cospg33ut50t4" path="res://data/CPUs/cpu_01.tres" id="3_wvu2q"]
 
 [sub_resource type="Curve2D" id="Curve2D_4yx5u"]
 
@@ -18,9 +20,13 @@ script = ExtResource("1_6kp67")
 loop = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="PathFollow2D"]
+script = ExtResource("2_uqys7")
+stats = ExtResource("3_wvu2q")
 
 [node name="Sprite2D" type="Sprite2D" parent="PathFollow2D/CharacterBody2D"]
-texture = ExtResource("1_603sg")
+texture = ExtResource("2_kk8c8")
+region_enabled = true
+region_rect = Rect2(0, 0, 14, 14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/CharacterBody2D"]
 shape = SubResource("CircleShape2D_54n8c")

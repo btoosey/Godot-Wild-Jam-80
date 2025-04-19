@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CPUStats" load_steps=2 format=3 uid="uid://cgycm1mwhbcxd"]
+
+[ext_resource type="Script" path="res://data/CPUs/cpu_stats.gd" id="1_xrexe"]
+
+[resource]
+script = ExtResource("1_xrexe")
+cpu_colour = Color(0.878431, 0.811765, 0.368627, 1)
+skin_coordinates = Vector2i(4, 0)
+cpu_name = ""
+three_letter = ""

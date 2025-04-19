@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=44 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -22,7 +22,11 @@
 [ext_resource type="Script" path="res://scenes/racers/racer_paths.gd" id="17_os5gd"]
 [ext_resource type="Script" path="res://scenes/circuit_mover/circuit_mover.gd" id="19_0a4w3"]
 [ext_resource type="PackedScene" uid="uid://04j83wifmqkh" path="res://scenes/player/player.tscn" id="19_8oqdl"]
+[ext_resource type="Resource" uid="uid://dpj2xbbdkj4gx" path="res://data/CPUs/cpu_02.tres" id="19_250oh"]
 [ext_resource type="PackedScene" uid="uid://be47c88ges0wb" path="res://scenes/racers/cpu_racer.tscn" id="19_bch8b"]
+[ext_resource type="Resource" uid="uid://bndqxt0sbkhv1" path="res://data/CPUs/cpu_03.tres" id="20_6sr5t"]
+[ext_resource type="Resource" uid="uid://cm51thkxufyhj" path="res://data/CPUs/cpu_04.tres" id="21_rubu2"]
+[ext_resource type="Resource" uid="uid://cgycm1mwhbcxd" path="res://data/CPUs/cpu_05.tres" id="22_2steo"]
 [ext_resource type="Script" path="res://scripts/ui/race_ui/lap_counter.gd" id="22_j3vho"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
@@ -389,12 +393,18 @@ shape = SubResource("CircleShape2D_08m1d")
 curve = SubResource("Curve2D_1blyj")
 script = SubResource("GDScript_inwqj")
 
+[node name="CharacterBody2D" parent="Components/RaceManager/RacerPaths/CPURacerPath2/PathFollow2D" index="0"]
+stats = ExtResource("19_250oh")
+
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath2/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
 
 [node name="CPURacerPath3" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
 curve = SubResource("Curve2D_nadqk")
 script = SubResource("GDScript_1xpv2")
+
+[node name="CharacterBody2D" parent="Components/RaceManager/RacerPaths/CPURacerPath3/PathFollow2D" index="0"]
+stats = ExtResource("20_6sr5t")
 
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath3/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
@@ -403,12 +413,18 @@ shape = SubResource("CircleShape2D_08m1d")
 curve = SubResource("Curve2D_syl6s")
 script = SubResource("GDScript_4y8bt")
 
+[node name="CharacterBody2D" parent="Components/RaceManager/RacerPaths/CPURacerPath4/PathFollow2D" index="0"]
+stats = ExtResource("21_rubu2")
+
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath4/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
 
 [node name="CPURacerPath5" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
 curve = SubResource("Curve2D_wpn4w")
 script = SubResource("GDScript_ug6ft")
+
+[node name="CharacterBody2D" parent="Components/RaceManager/RacerPaths/CPURacerPath5/PathFollow2D" index="0"]
+stats = ExtResource("22_2steo")
 
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath5/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")

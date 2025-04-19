@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4g1b10dhudv1"
-path="res://.godot/imported/cpu_01.png-358b48734fc5ec2a16461295b4a0d3c4.ctex"
+uid="uid://dxa301ve0qpbd"
+path="res://.godot/imported/cpu_sprites.png-bae79b6849fc689c94a8ef146f942f70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/racers/cpus/cpu_01.png"
-dest_files=["res://.godot/imported/cpu_01.png-358b48734fc5ec2a16461295b4a0d3c4.ctex"]
+source_file="res://assets/sprites/racers/cpus/cpu_sprites.png"
+dest_files=["res://.godot/imported/cpu_sprites.png-bae79b6849fc689c94a8ef146f942f70.ctex"]
 
 [params]
 
