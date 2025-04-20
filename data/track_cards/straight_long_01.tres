@@ -5,6 +5,20 @@
 [resource]
 script = ExtResource("1_an7rn")
 card_type = 0
+price = 5
 skin_coordinates = Vector2i(0, 0)
 circuit_link_1 = Vector2(0, -32)
 circuit_link_2 = Vector2(0, 96)
+c_1_out = Vector2(0, 0)
+c_2_in = Vector2(0, 0)
+c_2_out = Vector2(0, 0)
+c_1_in = Vector2(0, 0)
+caution_min_limit_1 = 0.0
+caution_max_limit_1 = 0.0
+speed_min_limit_1 = 0.0
+speed_max_limit_1 = 0.0
+caution_min_limit_2 = 0.0
+caution_max_limit_2 = 0.0
+speed_min_limit_2 = 0.0
+speed_max_limit_2 = 0.0
+speed_threshold = 0.0

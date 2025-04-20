@@ -3,6 +3,7 @@ extends Node2D
 
 const CELL_SIZE := Vector2(64, 64)
 const TRACK_CARD_SIZE := Vector2(64, 128)
+const HALF_TRACK_CARD_SIZE := Vector2(32, 64)
 const CPU_SPRITE_SIZE := Vector2(14, 14)
 
 @onready var game_state_machine: GameStateMachine = $"Components/GameStateMachine" as GameStateMachine
