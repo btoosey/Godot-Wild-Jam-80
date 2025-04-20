@@ -82,6 +82,7 @@ func reset_after_dragging(starting_position: Vector2, orientation: int) -> void:
 		rotate_card(90)
 	global_position = starting_position
 
+
 func _input(event: InputEvent) -> void:
 	if !hovering:
 		return
@@ -96,11 +97,10 @@ func _input(event: InputEvent) -> void:
 		PlayerStatsGlobal.money += stats.price
 		self.queue_free()
 
-func _on_mouse_entered() -> void:
 
+func _on_mouse_entered() -> void:
 	hovering = true
-	print(self, hovering)
+
 
 func _on_mouse_exited() -> void:
 	hovering = false
-	print(self, hovering)
