@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=91 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -49,6 +49,8 @@
 [ext_resource type="Resource" uid="uid://c1yq4jeh2k4b5" path="res://data/track_cards/s_corner_01.tres" id="37_o327j"]
 [ext_resource type="Resource" uid="uid://cy6xfsoiujief" path="res://data/track_cards/z_corner_01.tres" id="38_tgdo7"]
 [ext_resource type="Script" path="res://scripts/ui/setup_ui/car_upgrade_button.gd" id="39_pkxc2"]
+[ext_resource type="Theme" uid="uid://bvqklgvegqfa5" path="res://assets/themes/leaderboard/leaderboard_row.tres" id="49_c46o0"]
+[ext_resource type="Theme" uid="uid://h56iaqwvcibo" path="res://assets/themes/label_settings/leaderboard_label.tres" id="51_0fr01"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -1066,102 +1068,181 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -182.5
+offset_top = -227.5
+offset_right = 182.5
+offset_bottom = 115.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Titles" type="HBoxContainer" parent="ResultsUI/RaceResults"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("49_c46o0")
+
+[node name="PositionTitle" type="Label" parent="ResultsUI/RaceResults/Titles"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("51_0fr01")
+text = "Position"
+
+[node name="NameTitle" type="Label" parent="ResultsUI/RaceResults/Titles"]
+layout_mode = 2
+theme = ExtResource("51_0fr01")
+text = "Racer"
+
+[node name="PrizeMoneyTitle" type="Label" parent="ResultsUI/RaceResults/Titles"]
+layout_mode = 2
+theme = ExtResource("51_0fr01")
+text = "Prize Money"
+
+[node name="Line2D" type="Line2D" parent="ResultsUI/RaceResults"]
+position = Vector2(-10, 3)
+points = PackedVector2Array(659, 45.5, 24, 45.5)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="Position1" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position2" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position3" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position4" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position5" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position6" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Continue" type="Button" parent="ResultsUI"]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 205.5
+offset_right = 74.0
+offset_bottom = 258.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+theme = ExtResource("30_prroa")
 text = "Continue"
 
 [connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
