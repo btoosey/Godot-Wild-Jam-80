@@ -589,10 +589,10 @@ zoom = Vector2(2, 2)
 [node name="CameraDrag" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("2_tjfnl")
 camera = NodePath("..")
-camera_left_limit = 320
-camera_right_limit = 448
-camera_top_limit = 180
-camera_bottom_limit = 588
+camera_left_limit = 280
+camera_right_limit = 488
+camera_top_limit = 140
+camera_bottom_limit = 628
 
 [node name="Components" type="Node" parent="."]
 
