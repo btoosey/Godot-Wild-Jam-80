@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=77 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -458,6 +458,26 @@ resource_local_to_scene = true
 atlas = ExtResource("28_2fnhu")
 region = Rect2(32, 64, 32, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yacb"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u14h"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qmhp"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2prod"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(32, 64, 32, 64)
+
 [sub_resource type="LabelSettings" id="LabelSettings_2psnu"]
 font_size = 32
 font_color = Color(0.909804, 0.262745, 0.247059, 1)
@@ -642,8 +662,9 @@ script = ExtResource("15_r6i58")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
+offset_left = -1010.0
 offset_top = -112.0
-offset_right = 1033.2
+offset_right = 90.0
 grow_vertical = 0
 
 [node name="ShopUI" type="HBoxContainer" parent="SetupUI/Panel"]
@@ -743,14 +764,14 @@ layout_mode = 2
 
 [node name="ShopTrackCardBtn" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_ahh17")
-texture_disabled = SubResource("AtlasTexture_05ivi")
+texture_normal = SubResource("AtlasTexture_5yacb")
+texture_disabled = SubResource("AtlasTexture_6u14h")
 track_card_stats = ExtResource("37_o327j")
 
 [node name="ShopTrackCardBtn2" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_lyvtm")
-texture_disabled = SubResource("AtlasTexture_7ua6d")
+texture_normal = SubResource("AtlasTexture_7qmhp")
+texture_disabled = SubResource("AtlasTexture_2prod")
 track_card_stats = ExtResource("38_tgdo7")
 
 [node name="CarUpgradesUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
@@ -771,6 +792,11 @@ Acceleration"
 layout_mode = 2
 text = "Increase
 Brake Power"
+
+[node name="SHOP" type="Button" parent="SetupUI/Panel/ShopUI"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "SHOP"
 
 [node name="CircuitCompletion" type="Label" parent="SetupUI"]
 offset_right = 1.0
@@ -901,9 +927,12 @@ text = "Continue"
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="track_card_ended" from="Components/RaceManager/RacerPaths/PlayerPath" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
 [connection signal="timeout" from="Components/RaceManager/RacerPaths/PlayerPath/DecelerationTimer" to="Components/RaceManager/RacerPaths/PlayerPath" method="_on_deceleration_timer_timeout"]
+[connection signal="mouse_entered" from="SetupUI/Panel" to="SetupUI" method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="SetupUI/Panel" to="SetupUI" method="_on_panel_mouse_exited"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/TopSpeed" to="SetupUI" method="_on_top_speed_pressed"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/AcceleratorPower" to="SetupUI" method="_on_accelerator_power_pressed"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/BrakePower" to="SetupUI" method="_on_brake_power_pressed"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/SHOP" to="SetupUI" method="_on_shop_pressed"]
 [connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
 [connection signal="pressed" from="ResultsUI/Continue" to="ResultsUI" method="_on_continue_pressed"]
 

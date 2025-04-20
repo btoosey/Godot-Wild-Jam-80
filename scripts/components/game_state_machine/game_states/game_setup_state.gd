@@ -11,6 +11,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	setup_ui.hide_shop_ui()
 	setup_ui.hide()
 	var track_cards = get_tree().get_nodes_in_group("track_cards")
 	for c in track_cards:
