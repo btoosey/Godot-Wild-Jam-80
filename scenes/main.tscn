@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=89 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -33,9 +33,12 @@
 [ext_resource type="Script" path="res://scripts/ui/start_ui/start_ui.gd" id="27_xdqku"]
 [ext_resource type="Resource" uid="uid://b44jgapopo1mv" path="res://data/track_cards/straight_long_01.tres" id="28_0g71v"]
 [ext_resource type="Texture2D" uid="uid://ccur0biq86gy6" path="res://assets/sprites/ui/setup/inventory_track_card_buttons_disabled.png" id="28_2fnhu"]
+[ext_resource type="FontFile" uid="uid://du3w8uvtiy6ex" path="res://assets/fonts/Stifly.ttf" id="28_h6juv"]
 [ext_resource type="Texture2D" uid="uid://ehh8dwpvv2jj" path="res://assets/sprites/ui/setup/inventory_track_card_buttons.png" id="28_j1ivp"]
 [ext_resource type="Script" path="res://scripts/ui/race_ui/race_ui.gd" id="28_wgn8a"]
 [ext_resource type="Resource" uid="uid://nkx03tnwarhs" path="res://data/track_cards/straight_short_01.tres" id="29_0lok0"]
+[ext_resource type="LabelSettings" uid="uid://c2g7yxbddwmsb" path="res://assets/themes/label_settings/title.tres" id="29_dh7ml"]
+[ext_resource type="Theme" uid="uid://br11v8qh14ro6" path="res://assets/themes/button_themes/menu_button.tres" id="30_prroa"]
 [ext_resource type="Script" path="res://scripts/ui/results_ui/results_ui.gd" id="30_sdypd"]
 [ext_resource type="Script" path="res://scripts/ui/results_ui/position.gd" id="31_pgcmh"]
 [ext_resource type="Resource" uid="uid://bvkqr6ki1bc8p" path="res://data/track_cards/c_corner_01.tres" id="32_7ij3m"]
@@ -486,9 +489,20 @@ bake_interval = 4.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eno2j"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_l0qsf"]
-font_size = 64
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_6oc6j"]
+font = ExtResource("28_h6juv")
+font_size = 216
+font_color = Color(0.270588, 0.611765, 1, 1)
+shadow_color = Color(1, 0.563827, 0.499969, 1)
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i5j4"]
+atlas = ExtResource("28_j1ivp")
+region = Rect2(97.1943, 64.2207, 32.4267, 63.9829)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdk1f"]
+atlas = ExtResource("28_j1ivp")
+region = Rect2(41.5829, 72.2375, 21.9805, 57.0188)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dopny"]
 resource_local_to_scene = true
@@ -779,34 +793,61 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eno2j")
 
-[node name="Label" type="Label" parent="StartUI"]
+[node name="TitleShadow" type="Label" parent="StartUI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -508.5
+offset_top = -96.0
+offset_right = 410.5
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GRIDSHIFT"
-label_settings = SubResource("LabelSettings_l0qsf")
+label_settings = SubResource("LabelSettings_6oc6j")
 
-[node name="Button" type="Button" parent="StartUI"]
+[node name="Title" type="Label" parent="StartUI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = 116.0
-offset_right = 4.0
-offset_bottom = 124.0
+offset_left = -516.5
+offset_top = -104.0
+offset_right = 402.5
+offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "New Game"
+text = "GRIDSHIFT"
+label_settings = ExtResource("29_dh7ml")
+
+[node name="Button" type="Button" parent="StartUI"]
+offset_left = 780.0
+offset_top = 554.0
+offset_right = 1011.0
+offset_bottom = 618.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("30_prroa")
+text = "NEW GAME"
+
+[node name="InventoryTrackCardButtons" type="Sprite2D" parent="StartUI"]
+position = Vector2(1172, 242)
+scale = Vector2(9.017, 9.017)
+texture = SubResource("AtlasTexture_5i5j4")
+
+[node name="InventoryTrackCardButtons2" type="Sprite2D" parent="StartUI"]
+position = Vector2(864, 72)
+rotation = -1.5708
+scale = Vector2(9.017, 9.017)
+texture = SubResource("AtlasTexture_bdk1f")
+
+[node name="InventoryTrackCardButtons3" type="Sprite2D" parent="StartUI"]
+position = Vector2(290.681, 614.362)
+rotation = 1.5708
+scale = Vector2(10.0606, 10.0606)
+texture = SubResource("AtlasTexture_bdk1f")
 
 [node name="SetupUI" type="CanvasLayer" parent="."]
 visible = false
