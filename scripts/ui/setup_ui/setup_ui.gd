@@ -18,7 +18,7 @@ func _ready() -> void:
 	brake_power.text = str("Increase\nBrake Power\n", brake_power.price, "$")
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	money.text = str(PlayerStatsGlobal.money, "$")
 
 	if PlayerStatsGlobal.money < top_speed.price:

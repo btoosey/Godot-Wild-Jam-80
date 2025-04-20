@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=79 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -28,6 +28,7 @@
 [ext_resource type="Resource" uid="uid://bndqxt0sbkhv1" path="res://data/CPUs/cpu_03.tres" id="20_6sr5t"]
 [ext_resource type="Resource" uid="uid://cm51thkxufyhj" path="res://data/CPUs/cpu_04.tres" id="21_rubu2"]
 [ext_resource type="Resource" uid="uid://cgycm1mwhbcxd" path="res://data/CPUs/cpu_05.tres" id="22_2steo"]
+[ext_resource type="Script" path="res://scripts/components/points_calculator.gd" id="26_tmw2s"]
 [ext_resource type="PackedScene" uid="uid://bbd8rlqckvo1u" path="res://scenes/ui/shop_track_card_btn.tscn" id="27_5bc8a"]
 [ext_resource type="Resource" uid="uid://b44jgapopo1mv" path="res://data/track_cards/straight_long_01.tres" id="28_0g71v"]
 [ext_resource type="Texture2D" uid="uid://ccur0biq86gy6" path="res://assets/sprites/ui/setup/inventory_track_card_buttons_disabled.png" id="28_2fnhu"]
@@ -656,6 +657,10 @@ three_letter = "BEN"
 wait_time = 0.3
 one_shot = true
 
+[node name="PointsCalculator" type="Node" parent="Components" node_paths=PackedStringArray("race_manager")]
+script = ExtResource("26_tmw2s")
+race_manager = NodePath("../RaceManager")
+
 [node name="SetupUI" type="CanvasLayer" parent="."]
 script = ExtResource("15_r6i58")
 
@@ -865,6 +870,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
 
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position1"]
+layout_mode = 2
+
 [node name="Position2" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
 script = ExtResource("31_pgcmh")
@@ -873,6 +881,9 @@ script = ExtResource("31_pgcmh")
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position2"]
+layout_mode = 2
+
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
 
 [node name="Position3" type="HBoxContainer" parent="ResultsUI/RaceResults"]
@@ -885,6 +896,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
 
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position3"]
+layout_mode = 2
+
 [node name="Position4" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
 script = ExtResource("31_pgcmh")
@@ -893,6 +907,9 @@ script = ExtResource("31_pgcmh")
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position4"]
+layout_mode = 2
+
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
 
 [node name="Position5" type="HBoxContainer" parent="ResultsUI/RaceResults"]
@@ -905,6 +922,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
 
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position5"]
+layout_mode = 2
+
 [node name="Position6" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
 script = ExtResource("31_pgcmh")
@@ -913,6 +933,9 @@ script = ExtResource("31_pgcmh")
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position6"]
+layout_mode = 2
+
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
 
 [node name="Continue" type="Button" parent="ResultsUI"]

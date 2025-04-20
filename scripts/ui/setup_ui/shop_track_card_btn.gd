@@ -13,7 +13,7 @@ func _ready() -> void:
 	texture_disabled.region.position = Vector2(track_card_stats.skin_coordinates) * Main.HALF_TRACK_CARD_SIZE
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if PlayerStatsGlobal.money < track_card_stats.price:
 		disabled = true
 	else:
