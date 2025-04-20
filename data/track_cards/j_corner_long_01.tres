@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_w8q78")
 card_type = 5
-price = 0
+price = 3
 skin_coordinates = Vector2i(1, 1)
 circuit_link_1 = Vector2(32, 0)
 circuit_link_2 = Vector2(0, 96)

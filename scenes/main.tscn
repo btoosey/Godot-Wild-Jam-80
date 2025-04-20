@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=78 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -43,6 +43,7 @@
 [ext_resource type="Resource" uid="uid://01rgt6dtaxbw" path="res://data/track_cards/l_corner_long_01.tres" id="36_yj4f8"]
 [ext_resource type="Resource" uid="uid://c1yq4jeh2k4b5" path="res://data/track_cards/s_corner_01.tres" id="37_o327j"]
 [ext_resource type="Resource" uid="uid://cy6xfsoiujief" path="res://data/track_cards/z_corner_01.tres" id="38_tgdo7"]
+[ext_resource type="Script" path="res://scripts/ui/setup_ui/car_upgrade_button.gd" id="39_pkxc2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -682,7 +683,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="SetupUI/Panel/ShopUI"]
+[node name="Money" type="Label" parent="SetupUI/Panel/ShopUI"]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "20$"
 
@@ -782,16 +784,22 @@ theme_override_constants/separation = 40
 layout_mode = 2
 text = "Increase
 Top Speed"
+script = ExtResource("39_pkxc2")
+price = 5
 
 [node name="AcceleratorPower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
 text = "Increase
 Acceleration"
+script = ExtResource("39_pkxc2")
+price = 5
 
 [node name="BrakePower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
 text = "Increase
 Brake Power"
+script = ExtResource("39_pkxc2")
+price = 5
 
 [node name="SHOP" type="Button" parent="SetupUI/Panel/ShopUI"]
 layout_mode = 2

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_jr72t")
 card_type = 7
+price = 4
 skin_coordinates = Vector2i(2, 1)
 circuit_link_1 = Vector2(-32, 64)
 circuit_link_2 = Vector2(32, 0)
