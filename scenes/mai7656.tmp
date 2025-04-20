@@ -730,6 +730,7 @@ script = ExtResource("26_tmw2s")
 race_manager = NodePath("../RaceManager")
 
 [node name="StartUI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("27_xdqku")
 
 [node name="Panel" type="Panel" parent="StartUI"]
@@ -943,7 +944,6 @@ text = "Start Race"
 script = ExtResource("16_i23ju")
 
 [node name="RaceUI" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("28_wgn8a")
 
 [node name="LapCounter" type="Label" parent="RaceUI"]

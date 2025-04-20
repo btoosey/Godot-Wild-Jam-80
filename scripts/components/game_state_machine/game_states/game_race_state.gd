@@ -9,10 +9,11 @@ func enter() -> void:
 	race_ui.show()
 	race_manager.initialize_race()
 	racer_paths.show()
-	racer_paths.enable_racer_paths()
 	racer_paths.initialize_racers()
+	race_ui.start_countdown()
 
 
 func exit() -> void:
+	racer_paths.disable_racer_paths()
 	race_ui.hide()
 	racer_paths.hide()

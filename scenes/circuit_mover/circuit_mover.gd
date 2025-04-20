@@ -77,6 +77,9 @@ func finish_race() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if !enabled:
+		return
+
 	if can_accelerate == false or race_ended == true:
 		return
 
