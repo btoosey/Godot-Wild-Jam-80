@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=80 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -540,6 +540,10 @@ font_color = Color(0.909804, 0.262745, 0.247059, 1)
 font_size = 32
 font_color = Color(0, 0.573047, 0.00845426, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ijasw"]
+font_size = 32
+font_color = Color(1, 0.333333, 0, 1)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jtu5u")
 
@@ -895,6 +899,14 @@ offset_bottom = 45.0
 text = "Lap 1"
 label_settings = SubResource("LabelSettings_ln77r")
 
+[node name="CautionLabel" type="Label" parent="RaceUI"]
+visible = false
+offset_top = 56.0
+offset_right = 143.0
+offset_bottom = 101.0
+text = "CAUTION"
+label_settings = SubResource("LabelSettings_ijasw")
+
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("30_sdypd")
@@ -1008,6 +1020,8 @@ text = "Continue"
 [connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
 [connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
+[connection signal="hide_caution" from="Components/RaceManager/RacerPaths/PlayerPath" to="RaceUI" method="_on_player_path_hide_caution"]
+[connection signal="show_caution" from="Components/RaceManager/RacerPaths/PlayerPath" to="RaceUI" method="_on_player_path_show_caution"]
 [connection signal="track_card_ended" from="Components/RaceManager/RacerPaths/PlayerPath" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
 [connection signal="timeout" from="Components/RaceManager/RacerPaths/PlayerPath/DecelerationTimer" to="Components/RaceManager/RacerPaths/PlayerPath" method="_on_deceleration_timer_timeout"]
 [connection signal="mouse_entered" from="SetupUI/Panel" to="SetupUI" method="_on_panel_mouse_entered"]
