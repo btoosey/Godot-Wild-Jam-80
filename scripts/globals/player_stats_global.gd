@@ -1,3 +1,3 @@
 extends Node
 
-var money := 13
+var money := 0
