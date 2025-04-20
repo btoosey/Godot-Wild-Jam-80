@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=83 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -30,6 +30,7 @@
 [ext_resource type="Resource" uid="uid://cgycm1mwhbcxd" path="res://data/CPUs/cpu_05.tres" id="22_2steo"]
 [ext_resource type="Script" path="res://scripts/components/points_calculator.gd" id="26_tmw2s"]
 [ext_resource type="PackedScene" uid="uid://bbd8rlqckvo1u" path="res://scenes/ui/shop_track_card_btn.tscn" id="27_5bc8a"]
+[ext_resource type="Script" path="res://scripts/ui/start_ui/start_ui.gd" id="27_xdqku"]
 [ext_resource type="Resource" uid="uid://b44jgapopo1mv" path="res://data/track_cards/straight_long_01.tres" id="28_0g71v"]
 [ext_resource type="Texture2D" uid="uid://ccur0biq86gy6" path="res://assets/sprites/ui/setup/inventory_track_card_buttons_disabled.png" id="28_2fnhu"]
 [ext_resource type="Texture2D" uid="uid://ehh8dwpvv2jj" path="res://assets/sprites/ui/setup/inventory_track_card_buttons.png" id="28_j1ivp"]
@@ -442,6 +443,13 @@ func spin_out() -> void:
 [sub_resource type="Curve2D" id="Curve2D_4hhel"]
 bake_interval = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eno2j"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l0qsf"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_dopny"]
 resource_local_to_scene = true
 atlas = ExtResource("28_j1ivp")
@@ -607,7 +615,7 @@ play_area = NodePath("../../PlayArea")
 
 [node name="GameStateMachine" type="Node" parent="Components" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("12_k7eph")
-initial_state = NodePath("GameSetupState")
+initial_state = NodePath("GameStartState")
 
 [node name="GameStartState" type="Node" parent="Components/GameStateMachine"]
 script = ExtResource("13_hlcgw")
@@ -717,7 +725,48 @@ one_shot = true
 script = ExtResource("26_tmw2s")
 race_manager = NodePath("../RaceManager")
 
+[node name="StartUI" type="CanvasLayer" parent="."]
+script = ExtResource("27_xdqku")
+
+[node name="Panel" type="Panel" parent="StartUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eno2j")
+
+[node name="Label" type="Label" parent="StartUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GRIDSHIFT"
+label_settings = SubResource("LabelSettings_l0qsf")
+
+[node name="Button" type="Button" parent="StartUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 116.0
+offset_right = 4.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "New Game"
+
 [node name="SetupUI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("15_r6i58")
 
 [node name="Panel" type="Panel" parent="SetupUI"]
@@ -1024,6 +1073,7 @@ text = "Continue"
 [connection signal="show_caution" from="Components/RaceManager/RacerPaths/PlayerPath" to="RaceUI" method="_on_player_path_show_caution"]
 [connection signal="track_card_ended" from="Components/RaceManager/RacerPaths/PlayerPath" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
 [connection signal="timeout" from="Components/RaceManager/RacerPaths/PlayerPath/DecelerationTimer" to="Components/RaceManager/RacerPaths/PlayerPath" method="_on_deceleration_timer_timeout"]
+[connection signal="pressed" from="StartUI/Button" to="StartUI" method="_on_button_pressed"]
 [connection signal="mouse_entered" from="SetupUI/Panel" to="SetupUI" method="_on_panel_mouse_entered"]
 [connection signal="mouse_exited" from="SetupUI/Panel" to="SetupUI" method="_on_panel_mouse_exited"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/TopSpeed" to="SetupUI" method="_on_top_speed_pressed"]
