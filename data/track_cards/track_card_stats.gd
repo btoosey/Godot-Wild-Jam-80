@@ -15,6 +15,7 @@ enum CardType {
 
 @export_category("Data")
 @export var card_type : CardType
+@export var price: int
 
 @export_category("Visuals")
 @export var skin_coordinates: Vector2i

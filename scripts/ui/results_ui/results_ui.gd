@@ -4,6 +4,7 @@ extends CanvasLayer
 
 @onready var race_manager: RaceManager = $"../Components/RaceManager"
 @onready var race_results: VBoxContainer = $RaceResults
+@onready var points_calculator: Node = $"../Components/PointsCalculator"
 
 
 func display_race_results() -> void:
@@ -11,6 +12,7 @@ func display_race_results() -> void:
 	for position in race_results.get_children():
 		position.position_label.text = str(i + 1)
 		position.name_label.text = str(race_manager.race_order[i].three_letter)
+		position.prize_money.text = str(points_calculator.prize_order[i],"$")
 		i += 1
 
 

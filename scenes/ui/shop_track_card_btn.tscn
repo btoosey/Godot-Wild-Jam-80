@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbd8rlqckvo1u"]
+
+[ext_resource type="Script" path="res://scripts/ui/setup_ui/shop_track_card_btn.gd" id="1_4sde8"]
+[ext_resource type="Texture2D" uid="uid://ehh8dwpvv2jj" path="res://assets/sprites/ui/setup/inventory_track_card_buttons.png" id="1_vm8u0"]
+[ext_resource type="Texture2D" uid="uid://ccur0biq86gy6" path="res://assets/sprites/ui/setup/inventory_track_card_buttons_disabled.png" id="2_oulb0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdesc"]
+resource_local_to_scene = true
+atlas = ExtResource("1_vm8u0")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xls45"]
+resource_local_to_scene = true
+atlas = ExtResource("2_oulb0")
+region = Rect2(32, 0, 32, 64)
+
+[node name="ShopTrackCardBtn" type="TextureButton"]
+texture_normal = SubResource("AtlasTexture_fdesc")
+texture_disabled = SubResource("AtlasTexture_xls45")
+script = ExtResource("1_4sde8")
+
+[node name="PriceLabel" type="Label" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = -15.0
+offset_right = 33.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "3"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

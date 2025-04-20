@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=79 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -28,9 +28,23 @@
 [ext_resource type="Resource" uid="uid://bndqxt0sbkhv1" path="res://data/CPUs/cpu_03.tres" id="20_6sr5t"]
 [ext_resource type="Resource" uid="uid://cm51thkxufyhj" path="res://data/CPUs/cpu_04.tres" id="21_rubu2"]
 [ext_resource type="Resource" uid="uid://cgycm1mwhbcxd" path="res://data/CPUs/cpu_05.tres" id="22_2steo"]
+[ext_resource type="Script" path="res://scripts/components/points_calculator.gd" id="26_tmw2s"]
+[ext_resource type="PackedScene" uid="uid://bbd8rlqckvo1u" path="res://scenes/ui/shop_track_card_btn.tscn" id="27_5bc8a"]
+[ext_resource type="Resource" uid="uid://b44jgapopo1mv" path="res://data/track_cards/straight_long_01.tres" id="28_0g71v"]
+[ext_resource type="Texture2D" uid="uid://ccur0biq86gy6" path="res://assets/sprites/ui/setup/inventory_track_card_buttons_disabled.png" id="28_2fnhu"]
+[ext_resource type="Texture2D" uid="uid://ehh8dwpvv2jj" path="res://assets/sprites/ui/setup/inventory_track_card_buttons.png" id="28_j1ivp"]
 [ext_resource type="Script" path="res://scripts/ui/race_ui/race_ui.gd" id="28_wgn8a"]
+[ext_resource type="Resource" uid="uid://nkx03tnwarhs" path="res://data/track_cards/straight_short_01.tres" id="29_0lok0"]
 [ext_resource type="Script" path="res://scripts/ui/results_ui/results_ui.gd" id="30_sdypd"]
 [ext_resource type="Script" path="res://scripts/ui/results_ui/position.gd" id="31_pgcmh"]
+[ext_resource type="Resource" uid="uid://bvkqr6ki1bc8p" path="res://data/track_cards/c_corner_01.tres" id="32_7ij3m"]
+[ext_resource type="Resource" uid="uid://bvbu0lefe8emx" path="res://data/track_cards/j_corner_short_01.tres" id="33_qq1of"]
+[ext_resource type="Resource" uid="uid://dreawm5knayh8" path="res://data/track_cards/j_corner_long_01.tres" id="34_g2sw6"]
+[ext_resource type="Resource" uid="uid://b06qp3okq8bxk" path="res://data/track_cards/l_corner_short_01.tres" id="35_gyckh"]
+[ext_resource type="Resource" uid="uid://01rgt6dtaxbw" path="res://data/track_cards/l_corner_long_01.tres" id="36_yj4f8"]
+[ext_resource type="Resource" uid="uid://c1yq4jeh2k4b5" path="res://data/track_cards/s_corner_01.tres" id="37_o327j"]
+[ext_resource type="Resource" uid="uid://cy6xfsoiujief" path="res://data/track_cards/z_corner_01.tres" id="38_tgdo7"]
+[ext_resource type="Script" path="res://scripts/ui/setup_ui/car_upgrade_button.gd" id="39_pkxc2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -376,6 +390,96 @@ func finish_race() -> void:
 [sub_resource type="Curve2D" id="Curve2D_4hhel"]
 bake_interval = 4.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dopny"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbk08"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow8jv"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1hib"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahh17"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05ivi"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyvtm"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ua6d"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dgsx"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4fi2"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqyik"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvqa4"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rirm7"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s166f"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yacb"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u14h"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qmhp"]
+resource_local_to_scene = true
+atlas = ExtResource("28_j1ivp")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2prod"]
+resource_local_to_scene = true
+atlas = ExtResource("28_2fnhu")
+region = Rect2(32, 64, 32, 64)
+
 [sub_resource type="LabelSettings" id="LabelSettings_2psnu"]
 font_size = 32
 font_color = Color(0.909804, 0.262745, 0.247059, 1)
@@ -441,6 +545,7 @@ track_card_mover = NodePath("../TrackCardMover")
 position = Vector2(384, 384)
 
 [node name="TrackCardSpawner" type="Node" parent="Components" node_paths=PackedStringArray("play_area")]
+unique_name_in_owner = true
 script = ExtResource("14_s77h4")
 play_area = NodePath("../../PlayArea")
 
@@ -552,8 +657,159 @@ three_letter = "BEN"
 wait_time = 0.3
 one_shot = true
 
+[node name="PointsCalculator" type="Node" parent="Components" node_paths=PackedStringArray("race_manager")]
+script = ExtResource("26_tmw2s")
+race_manager = NodePath("../RaceManager")
+
 [node name="SetupUI" type="CanvasLayer" parent="."]
 script = ExtResource("15_r6i58")
+
+[node name="Panel" type="Panel" parent="SetupUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -1010.0
+offset_top = -112.0
+offset_right = 90.0
+grow_vertical = 0
+
+[node name="ShopUI" type="HBoxContainer" parent="SetupUI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.5
+offset_top = -45.5
+offset_right = 242.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Money" type="Label" parent="SetupUI/Panel/ShopUI"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "20$"
+
+[node name="TrackCardUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Straights" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
+layout_mode = 2
+
+[node name="StraightsLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
+layout_mode = 2
+text = "STRAIGHTS"
+
+[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
+layout_mode = 2
+
+[node name="ShopTrackCardBtn" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_dopny")
+texture_disabled = SubResource("AtlasTexture_bbk08")
+track_card_stats = ExtResource("28_0g71v")
+
+[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ow8jv")
+texture_disabled = SubResource("AtlasTexture_s1hib")
+track_card_stats = ExtResource("29_0lok0")
+
+[node name="SingleCorners" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
+layout_mode = 2
+
+[node name="SingleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
+layout_mode = 2
+text = "SINGLE CORNERS"
+
+[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
+layout_mode = 2
+
+[node name="ShopTrackCardBtn" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ahh17")
+texture_disabled = SubResource("AtlasTexture_05ivi")
+track_card_stats = ExtResource("32_7ij3m")
+
+[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_lyvtm")
+texture_disabled = SubResource("AtlasTexture_7ua6d")
+track_card_stats = ExtResource("33_qq1of")
+
+[node name="ShopTrackCardBtn3" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_5dgsx")
+texture_disabled = SubResource("AtlasTexture_f4fi2")
+track_card_stats = ExtResource("34_g2sw6")
+
+[node name="ShopTrackCardBtn4" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_eqyik")
+texture_disabled = SubResource("AtlasTexture_nvqa4")
+track_card_stats = ExtResource("35_gyckh")
+
+[node name="ShopTrackCardBtn5" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_rirm7")
+texture_disabled = SubResource("AtlasTexture_s166f")
+track_card_stats = ExtResource("36_yj4f8")
+
+[node name="DoubleCorners" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
+layout_mode = 2
+
+[node name="DoubleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
+layout_mode = 2
+text = "DOUBLE CORNERS"
+
+[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
+layout_mode = 2
+
+[node name="ShopTrackCardBtn" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_5yacb")
+texture_disabled = SubResource("AtlasTexture_6u14h")
+track_card_stats = ExtResource("37_o327j")
+
+[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_7qmhp")
+texture_disabled = SubResource("AtlasTexture_2prod")
+track_card_stats = ExtResource("38_tgdo7")
+
+[node name="CarUpgradesUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TopSpeed" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
+layout_mode = 2
+text = "Increase
+Top Speed"
+script = ExtResource("39_pkxc2")
+price = 5
+
+[node name="AcceleratorPower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
+layout_mode = 2
+text = "Increase
+Acceleration"
+script = ExtResource("39_pkxc2")
+price = 5
+
+[node name="BrakePower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
+layout_mode = 2
+text = "Increase
+Brake Power"
+script = ExtResource("39_pkxc2")
+price = 5
+
+[node name="SHOP" type="Button" parent="SetupUI/Panel/ShopUI"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "SHOP"
 
 [node name="CircuitCompletion" type="Label" parent="SetupUI"]
 offset_right = 1.0
@@ -614,6 +870,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
 
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position1"]
+layout_mode = 2
+
 [node name="Position2" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
 script = ExtResource("31_pgcmh")
@@ -622,6 +881,9 @@ script = ExtResource("31_pgcmh")
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position2"]
+layout_mode = 2
+
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
 
 [node name="Position3" type="HBoxContainer" parent="ResultsUI/RaceResults"]
@@ -634,6 +896,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
 
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position3"]
+layout_mode = 2
+
 [node name="Position4" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
 script = ExtResource("31_pgcmh")
@@ -642,6 +907,9 @@ script = ExtResource("31_pgcmh")
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position4"]
+layout_mode = 2
+
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
 
 [node name="Position5" type="HBoxContainer" parent="ResultsUI/RaceResults"]
@@ -654,6 +922,9 @@ layout_mode = 2
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
 
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position5"]
+layout_mode = 2
+
 [node name="Position6" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
 script = ExtResource("31_pgcmh")
@@ -662,6 +933,9 @@ script = ExtResource("31_pgcmh")
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position6"]
+layout_mode = 2
+
+[node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
 
 [node name="Continue" type="Button" parent="ResultsUI"]
@@ -684,6 +958,12 @@ text = "Continue"
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="track_card_ended" from="Components/RaceManager/RacerPaths/PlayerPath" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
 [connection signal="timeout" from="Components/RaceManager/RacerPaths/PlayerPath/DecelerationTimer" to="Components/RaceManager/RacerPaths/PlayerPath" method="_on_deceleration_timer_timeout"]
+[connection signal="mouse_entered" from="SetupUI/Panel" to="SetupUI" method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="SetupUI/Panel" to="SetupUI" method="_on_panel_mouse_exited"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/TopSpeed" to="SetupUI" method="_on_top_speed_pressed"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/AcceleratorPower" to="SetupUI" method="_on_accelerator_power_pressed"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/BrakePower" to="SetupUI" method="_on_brake_power_pressed"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/SHOP" to="SetupUI" method="_on_shop_pressed"]
 [connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
 [connection signal="pressed" from="ResultsUI/Continue" to="ResultsUI" method="_on_continue_pressed"]
 

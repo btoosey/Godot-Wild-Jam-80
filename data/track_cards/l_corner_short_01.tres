@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_op66u")
 card_type = 4
+price = 2
 skin_coordinates = Vector2i(3, 0)
 circuit_link_1 = Vector2(-32, 64)
 circuit_link_2 = Vector2(0, 96)
