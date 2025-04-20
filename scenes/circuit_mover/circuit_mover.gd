@@ -1,6 +1,8 @@
 extends Path2D
 
 signal track_card_ended
+signal show_caution
+signal hide_caution
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @export var race_manager: RaceManager
@@ -32,17 +34,21 @@ func _process(_delta: float) -> void:
 	if current_track_card.first_link == current_track_card.circuit_link_1:
 		if (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio > current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio < current_track_card.speed_max_limit_2):
 			if speed >= current_track_card.speed_threshold:
-				print("SPIN!")
+				spin_out()
 		elif (path_follow_2d.progress_ratio > current_track_card.caution_min_limit_1 and path_follow_2d.progress_ratio < current_track_card.caution_max_limit_1) or (path_follow_2d.progress_ratio > current_track_card.caution_min_limit_2 and path_follow_2d.progress_ratio < current_track_card.caution_max_limit_2):
 			if speed >= current_track_card.speed_threshold:
-				print("Caution")
+				show_caution.emit()
+			else:
+				hide_caution.emit()
 	else:
 		if (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_2):
 			if speed >= current_track_card.speed_threshold:
-				print("SPIN!")
+				spin_out()
 		elif (path_follow_2d.progress_ratio < 1 - current_track_card.caution_min_limit_1 and path_follow_2d.progress_ratio > 1 - current_track_card.caution_max_limit_1) or (path_follow_2d.progress_ratio < 1 - current_track_card.caution_min_limit_2 and path_follow_2d.progress_ratio > 1 - current_track_card.caution_max_limit_2):
 			if speed >= current_track_card.speed_threshold:
-				print("Caution")
+				show_caution.emit()
+			else:
+				hide_caution.emit()
 
 
 func accelerate() -> void:
@@ -50,16 +56,18 @@ func accelerate() -> void:
 	speed = clampf(speed, 0, top_speed)
 
 
-func decelerate() -> void:
-	speed -= deceleration
+func decelerate(value) -> void:
+	speed -= value
 	speed = clampf(speed, 0, top_speed)
 
 
 func decelerate_continously() -> void:
+	can_accelerate = false
 	if speed == 0:
+		can_accelerate = true
 		return
 
-	decelerate()
+	decelerate(0.02)
 	$DecelerationTimer.start()
 
 
@@ -76,8 +84,15 @@ func _input(event: InputEvent) -> void:
 		accelerate()
 
 	if event.is_action_pressed("player_decelerate"):
-		decelerate()
+		decelerate(deceleration)
 
 
 func _on_deceleration_timer_timeout() -> void:
 	decelerate_continously()
+
+
+func spin_out() -> void:
+	decelerate_continously()
+	var tween = get_tree().create_tween()
+	tween.tween_property(path_follow_2d.get_child(0).sprite_2d, "rotation", deg_to_rad(360), 1)
+	path_follow_2d.get_child(0).sprite_2d.rotation = 0
