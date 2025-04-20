@@ -11,7 +11,7 @@ var current_lap := 1
 
 var enabled = false
 var speed = 0
-var top_speed = 0.16
+var top_speed = 0.14
 var can_accelerate = true
 
 var race_ended = false
@@ -87,3 +87,13 @@ func spin_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(path_follow_2d.get_child(0).sprite_2d, "rotation", deg_to_rad(360), 1)
 	path_follow_2d.get_child(0).sprite_2d.rotation = 0
+
+
+func improve_random_stat() -> void:
+	var random_int = randi_range(0, 2)
+	if random_int == 0:
+		top_speed += 0.02
+	if random_int == 1:
+		acceleration += 0.005
+	if random_int == 2:
+		deceleration += 0.01

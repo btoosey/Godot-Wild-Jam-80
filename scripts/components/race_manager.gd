@@ -9,7 +9,7 @@ var racers
 var ordered_track_cards: Array
 
 var current_lap := 1
-var race_distance := 1
+var race_distance := 2
 
 var race_order: Array
 

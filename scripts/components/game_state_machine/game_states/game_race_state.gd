@@ -8,6 +8,7 @@ extends GameState
 func enter() -> void:
 	race_ui.show()
 	race_manager.initialize_race()
+	racer_paths.improve_cpu_stats()
 	racer_paths.show()
 	racer_paths.initialize_racers()
 	race_ui.start_countdown()

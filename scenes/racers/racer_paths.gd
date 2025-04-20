@@ -21,3 +21,8 @@ func initialize_racers() -> void:
 
 func start_race() -> void:
 	enable_racer_paths()
+
+
+func improve_cpu_stats() -> void:
+	for path in get_children():
+		path.improve_random_stat()
