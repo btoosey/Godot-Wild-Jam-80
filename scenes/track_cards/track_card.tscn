@@ -41,3 +41,6 @@ position = Vector2(32, 64)
 
 [node name="CircuitLink2" type="Marker2D" parent="CircuitLinks"]
 position = Vector2(0, 96)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

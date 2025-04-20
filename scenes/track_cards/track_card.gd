@@ -10,6 +10,10 @@ extends Area2D
 @onready var circuit_link_1: Marker2D = $CircuitLinks/CircuitLink1
 @onready var circuit_link_2: Marker2D = $CircuitLinks/CircuitLink2
 
+var circuit_manager
+
+var hovering := false
+
 var first_link: Marker2D
 var second_link: Marker2D
 
@@ -77,3 +81,26 @@ func reset_after_dragging(starting_position: Vector2, orientation: int) -> void:
 	while orientation != card_orientation:
 		rotate_card(90)
 	global_position = starting_position
+
+
+func _input(event: InputEvent) -> void:
+	if !hovering:
+		return
+
+	if drag_and_drop.dragging:
+		return
+
+	if circuit_manager.circuit_cards.has(self):
+		return
+
+	if event.is_action_pressed("sell_track_card"):
+		PlayerStatsGlobal.money += stats.price
+		self.queue_free()
+
+
+func _on_mouse_entered() -> void:
+	hovering = true
+
+
+func _on_mouse_exited() -> void:
+	hovering = false

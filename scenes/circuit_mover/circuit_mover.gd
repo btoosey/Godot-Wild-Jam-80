@@ -77,6 +77,9 @@ func finish_race() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if !enabled:
+		return
+
 	if can_accelerate == false or race_ended == true:
 		return
 
@@ -96,3 +99,7 @@ func spin_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(path_follow_2d.get_child(0).sprite_2d, "rotation", deg_to_rad(360), 1)
 	path_follow_2d.get_child(0).sprite_2d.rotation = 0
+
+
+func improve_random_stat() -> void:
+	pass

@@ -80,7 +80,7 @@ var current_lap := 1
 
 var enabled = false
 var speed = 0
-var top_speed = 0.14
+var top_speed = 0.16
 var can_accelerate = true
 
 var race_ended = false
@@ -156,16 +156,6 @@ func spin_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(path_follow_2d.get_child(0).sprite_2d, \"rotation\", deg_to_rad(360), 1)
 	path_follow_2d.get_child(0).sprite_2d.rotation = 0
-
-
-func improve_random_stat() -> void:
-	var random_int = randi_range(0, 2)
-	if random_int == 0:
-		top_speed += 0.02
-	if random_int == 1:
-		acceleration += 0.005
-	if random_int == 2:
-		deceleration += 0.01
 "
 
 [sub_resource type="Curve2D" id="Curve2D_nadqk"]
@@ -184,7 +174,7 @@ var current_lap := 1
 
 var enabled = false
 var speed = 0
-var top_speed = 0.14
+var top_speed = 0.16
 var can_accelerate = true
 
 var race_ended = false
@@ -260,16 +250,6 @@ func spin_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(path_follow_2d.get_child(0).sprite_2d, \"rotation\", deg_to_rad(360), 1)
 	path_follow_2d.get_child(0).sprite_2d.rotation = 0
-
-
-func improve_random_stat() -> void:
-	var random_int = randi_range(0, 2)
-	if random_int == 0:
-		top_speed += 0.02
-	if random_int == 1:
-		acceleration += 0.005
-	if random_int == 2:
-		deceleration += 0.01
 "
 
 [sub_resource type="Curve2D" id="Curve2D_syl6s"]
@@ -288,7 +268,7 @@ var current_lap := 1
 
 var enabled = false
 var speed = 0
-var top_speed = 0.14
+var top_speed = 0.16
 var can_accelerate = true
 
 var race_ended = false
@@ -364,16 +344,6 @@ func spin_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(path_follow_2d.get_child(0).sprite_2d, \"rotation\", deg_to_rad(360), 1)
 	path_follow_2d.get_child(0).sprite_2d.rotation = 0
-
-
-func improve_random_stat() -> void:
-	var random_int = randi_range(0, 2)
-	if random_int == 0:
-		top_speed += 0.02
-	if random_int == 1:
-		acceleration += 0.005
-	if random_int == 2:
-		deceleration += 0.01
 "
 
 [sub_resource type="Curve2D" id="Curve2D_wpn4w"]
@@ -392,7 +362,7 @@ var current_lap := 1
 
 var enabled = false
 var speed = 0
-var top_speed = 0.14
+var top_speed = 0.16
 var can_accelerate = true
 
 var race_ended = false
@@ -468,16 +438,6 @@ func spin_out() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(path_follow_2d.get_child(0).sprite_2d, \"rotation\", deg_to_rad(360), 1)
 	path_follow_2d.get_child(0).sprite_2d.rotation = 0
-
-
-func improve_random_stat() -> void:
-	var random_int = randi_range(0, 2)
-	if random_int == 0:
-		top_speed += 0.02
-	if random_int == 1:
-		acceleration += 0.005
-	if random_int == 2:
-		deceleration += 0.01
 "
 
 [sub_resource type="Curve2D" id="Curve2D_4hhel"]
@@ -759,6 +719,7 @@ loop = false
 
 [node name="Player" parent="Components/RaceManager/RacerPaths/PlayerPath/PathFollow2D" instance=ExtResource("19_8oqdl")]
 z_index = 10
+three_letter = "BEN"
 
 [node name="DecelerationTimer" type="Timer" parent="Components/RaceManager/RacerPaths/PlayerPath"]
 wait_time = 0.3
@@ -769,6 +730,7 @@ script = ExtResource("26_tmw2s")
 race_manager = NodePath("../RaceManager")
 
 [node name="StartUI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("27_xdqku")
 
 [node name="Panel" type="Panel" parent="StartUI"]
@@ -982,7 +944,6 @@ text = "Start Race"
 script = ExtResource("16_i23ju")
 
 [node name="RaceUI" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("28_wgn8a")
 
 [node name="LapCounter" type="Label" parent="RaceUI"]

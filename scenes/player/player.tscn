@@ -8,6 +8,7 @@ radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_a8bvt")
+three_letter = "PLAYER"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_cq2hp")
