@@ -643,107 +643,134 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -112.0
-offset_right = 512.0
+offset_right = 1033.2
 grow_vertical = 0
 
-[node name="TrackCardUI" type="HBoxContainer" parent="SetupUI/Panel"]
+[node name="ShopUI" type="HBoxContainer" parent="SetupUI/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -242.5
+offset_top = -45.5
+offset_right = 242.5
+offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
 
-[node name="Straights" type="VBoxContainer" parent="SetupUI/Panel/TrackCardUI"]
+[node name="Label" type="Label" parent="SetupUI/Panel/ShopUI"]
+layout_mode = 2
+text = "20$"
+
+[node name="TrackCardUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Straights" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
 layout_mode = 2
 
-[node name="StraightsLabel" type="Label" parent="SetupUI/Panel/TrackCardUI/Straights"]
+[node name="StraightsLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
 layout_mode = 2
 text = "STRAIGHTS"
 
-[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/TrackCardUI/Straights"]
+[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
 layout_mode = 2
 
-[node name="ShopTrackCardBtn" parent="SetupUI/Panel/TrackCardUI/Straights/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_dopny")
 texture_disabled = SubResource("AtlasTexture_bbk08")
 track_card_stats = ExtResource("28_0g71v")
 
-[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/TrackCardUI/Straights/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_ow8jv")
 texture_disabled = SubResource("AtlasTexture_s1hib")
 track_card_stats = ExtResource("29_0lok0")
 
-[node name="SingleCorners" type="VBoxContainer" parent="SetupUI/Panel/TrackCardUI"]
+[node name="SingleCorners" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
 layout_mode = 2
 
-[node name="SingleCornersLabel" type="Label" parent="SetupUI/Panel/TrackCardUI/SingleCorners"]
+[node name="SingleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
 layout_mode = 2
 text = "SINGLE CORNERS"
 
-[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/TrackCardUI/SingleCorners"]
+[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
 layout_mode = 2
 
-[node name="ShopTrackCardBtn" parent="SetupUI/Panel/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_ahh17")
 texture_disabled = SubResource("AtlasTexture_05ivi")
 track_card_stats = ExtResource("32_7ij3m")
 
-[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_lyvtm")
 texture_disabled = SubResource("AtlasTexture_7ua6d")
 track_card_stats = ExtResource("33_qq1of")
 
-[node name="ShopTrackCardBtn3" parent="SetupUI/Panel/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn3" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_5dgsx")
 texture_disabled = SubResource("AtlasTexture_f4fi2")
 track_card_stats = ExtResource("34_g2sw6")
 
-[node name="ShopTrackCardBtn4" parent="SetupUI/Panel/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn4" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_eqyik")
 texture_disabled = SubResource("AtlasTexture_nvqa4")
 track_card_stats = ExtResource("35_gyckh")
 
-[node name="ShopTrackCardBtn5" parent="SetupUI/Panel/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn5" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_rirm7")
 texture_disabled = SubResource("AtlasTexture_s166f")
 track_card_stats = ExtResource("36_yj4f8")
 
-[node name="DoubleCorners" type="VBoxContainer" parent="SetupUI/Panel/TrackCardUI"]
+[node name="DoubleCorners" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
 layout_mode = 2
 
-[node name="DoubleCornersLabel" type="Label" parent="SetupUI/Panel/TrackCardUI/DoubleCorners"]
+[node name="DoubleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
 layout_mode = 2
 text = "DOUBLE CORNERS"
 
-[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/TrackCardUI/DoubleCorners"]
+[node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
 layout_mode = 2
 
-[node name="ShopTrackCardBtn" parent="SetupUI/Panel/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_ahh17")
 texture_disabled = SubResource("AtlasTexture_05ivi")
 track_card_stats = ExtResource("37_o327j")
 
-[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
+[node name="ShopTrackCardBtn2" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners/Cards" instance=ExtResource("27_5bc8a")]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_lyvtm")
 texture_disabled = SubResource("AtlasTexture_7ua6d")
 track_card_stats = ExtResource("38_tgdo7")
+
+[node name="CarUpgradesUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="TopSpeed" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
+layout_mode = 2
+text = "Increase
+Top Speed"
+
+[node name="AcceleratorPower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
+layout_mode = 2
+text = "Increase
+Acceleration"
+
+[node name="BrakePower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
+layout_mode = 2
+text = "Increase
+Brake Power"
 
 [node name="CircuitCompletion" type="Label" parent="SetupUI"]
 offset_right = 1.0
@@ -874,6 +901,9 @@ text = "Continue"
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="track_card_ended" from="Components/RaceManager/RacerPaths/PlayerPath" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
 [connection signal="timeout" from="Components/RaceManager/RacerPaths/PlayerPath/DecelerationTimer" to="Components/RaceManager/RacerPaths/PlayerPath" method="_on_deceleration_timer_timeout"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/TopSpeed" to="SetupUI" method="_on_top_speed_pressed"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/AcceleratorPower" to="SetupUI" method="_on_accelerator_power_pressed"]
+[connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/BrakePower" to="SetupUI" method="_on_brake_power_pressed"]
 [connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
 [connection signal="pressed" from="ResultsUI/Continue" to="ResultsUI" method="_on_continue_pressed"]
 
