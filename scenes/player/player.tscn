@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://04j83wifmqkh"]
+[gd_scene load_steps=4 format=3 uid="uid://04j83wifmqkh"]
 
-[ext_resource type="Texture2D" uid="uid://d1qwafyoo6krk" path="res://assets/sprites/player/player.png" id="1_0c77r"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_a8bvt"]
+[ext_resource type="Texture2D" uid="uid://b1q3cqauf2oao" path="res://assets/sprites/racers/player/player.png" id="1_cq2hp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kn7u"]
 radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_a8bvt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0c77r")
+texture = ExtResource("1_cq2hp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1kn7u")
