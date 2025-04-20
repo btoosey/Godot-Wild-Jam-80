@@ -15,6 +15,8 @@ var speed = 0
 var top_speed = 0.14
 var can_accelerate = true
 
+var race_ended = false
+
 
 func _process(_delta: float) -> void:
 	if !enabled:
@@ -49,21 +51,25 @@ func accelerate() -> void:
 
 
 func decelerate() -> void:
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+
+
+func decelerate_continously() -> void:
 	if speed == 0:
 		return
 
-	speed -= deceleration
-	speed = clampf(speed, 0, top_speed)
-	can_accelerate = false
+	decelerate()
 	$DecelerationTimer.start()
 
 
 func finish_race() -> void:
-	decelerate()
+	race_ended = true
+	decelerate_continously()
 
 
 func _input(event: InputEvent) -> void:
-	if can_accelerate == false:
+	if can_accelerate == false or race_ended == true:
 		return
 
 	if event.is_action_pressed("player_accelerate"):
@@ -74,4 +80,4 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_deceleration_timer_timeout() -> void:
-	decelerate()
+	decelerate_continously()

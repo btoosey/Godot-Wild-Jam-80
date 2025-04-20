@@ -473,6 +473,7 @@ position = Vector2(365, 416)
 shape = SubResource("RectangleShape2D_ybjkt")
 
 [node name="RacerPaths" type="Node2D" parent="Components/RaceManager"]
+visible = false
 script = ExtResource("17_os5gd")
 
 [node name="CPURacerPath" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
