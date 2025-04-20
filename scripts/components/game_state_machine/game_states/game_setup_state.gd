@@ -4,6 +4,7 @@ extends GameState
 
 
 func enter() -> void:
+	setup_ui.show()
 	var track_cards = get_tree().get_nodes_in_group("track_cards")
 	for c in track_cards:
 		c.drag_and_drop.enabled = true
