@@ -4,6 +4,7 @@ signal track_card_ended
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @export var acceleration := 0.02
+@export var deceleration := 0.02
 
 var current_track_card
 var current_lap := 1
@@ -13,12 +14,14 @@ var speed = 0
 var top_speed = 0.14
 var can_accelerate = true
 
+var race_ended = false
+
 
 func _process(_delta: float) -> void:
 	if !enabled:
 		return
 
-	if speed + acceleration <= top_speed and can_accelerate:
+	if (speed + acceleration <= top_speed and can_accelerate) and !race_ended:
 		accelerate()
 
 	path_follow_2d.progress += speed
@@ -46,10 +49,28 @@ func accelerate() -> void:
 	$AccelerationTimer.start()
 
 
+func decelerate() -> void:
+	if speed == 0:
+		return
+
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+	$DecelerationTimer.start()
+
+
 func _on_acceleration_timer_timeout() -> void:
 	can_accelerate = true
+
+
+func _on_deceleration_timer_timeout() -> void:
+	decelerate()
 
 
 func speed_noise() -> float:
 	var min_noise = 0 - acceleration
 	return randf_range(min_noise, acceleration)
+
+
+func finish_race() -> void:
+	decelerate()
+	race_ended = true

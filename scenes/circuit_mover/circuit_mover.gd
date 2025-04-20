@@ -2,15 +2,19 @@ extends Path2D
 
 signal track_card_ended
 
+@onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @export var race_manager: RaceManager
 @export var acceleration := 0.02
-@onready var path_follow_2d: PathFollow2D = $PathFollow2D
+@export var deceleration := 0.02
 
 var current_track_card
 var current_lap := 1
 
 var enabled = false
 var speed = 0
+var top_speed = 0.14
+var can_accelerate = true
+
 
 func _process(_delta: float) -> void:
 	if !enabled:
@@ -38,10 +42,36 @@ func _process(_delta: float) -> void:
 			if speed >= current_track_card.speed_threshold:
 				print("Caution")
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("test_player_accelerate"):
-		speed += acceleration
 
-	if event.is_action_pressed("test_player_decelerate"):
-		if speed > 0:
-			speed -= acceleration
+func accelerate() -> void:
+	speed += acceleration
+	speed = clampf(speed, 0, top_speed)
+
+
+func decelerate() -> void:
+	if speed == 0:
+		return
+
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+	can_accelerate = false
+	$DecelerationTimer.start()
+
+
+func finish_race() -> void:
+	decelerate()
+
+
+func _input(event: InputEvent) -> void:
+	if can_accelerate == false:
+		return
+
+	if event.is_action_pressed("player_accelerate"):
+		accelerate()
+
+	if event.is_action_pressed("player_decelerate"):
+		decelerate()
+
+
+func _on_deceleration_timer_timeout() -> void:
+	decelerate()

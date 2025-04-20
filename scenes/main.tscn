@@ -27,7 +27,7 @@
 [ext_resource type="Resource" uid="uid://bndqxt0sbkhv1" path="res://data/CPUs/cpu_03.tres" id="20_6sr5t"]
 [ext_resource type="Resource" uid="uid://cm51thkxufyhj" path="res://data/CPUs/cpu_04.tres" id="21_rubu2"]
 [ext_resource type="Resource" uid="uid://cgycm1mwhbcxd" path="res://data/CPUs/cpu_05.tres" id="22_2steo"]
-[ext_resource type="Script" path="res://scripts/ui/race_ui/lap_counter.gd" id="22_j3vho"]
+[ext_resource type="Script" path="res://scripts/ui/race_ui/race_ui.gd" id="28_wgn8a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -55,6 +55,7 @@ signal track_card_ended
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @export var acceleration := 0.02
+@export var deceleration := 0.02
 
 var current_track_card
 var current_lap := 1
@@ -64,12 +65,14 @@ var speed = 0
 var top_speed = 0.14
 var can_accelerate = true
 
+var race_ended = false
+
 
 func _process(_delta: float) -> void:
 	if !enabled:
 		return
 
-	if speed + acceleration <= top_speed and can_accelerate:
+	if (speed + acceleration <= top_speed and can_accelerate) and !race_ended:
 		accelerate()
 
 	path_follow_2d.progress += speed
@@ -97,13 +100,31 @@ func accelerate() -> void:
 	$AccelerationTimer.start()
 
 
+func decelerate() -> void:
+	if speed == 0:
+		return
+
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+	$DecelerationTimer.start()
+
+
 func _on_acceleration_timer_timeout() -> void:
 	can_accelerate = true
+
+
+func _on_deceleration_timer_timeout() -> void:
+	decelerate()
 
 
 func speed_noise() -> float:
 	var min_noise = 0 - acceleration
 	return randf_range(min_noise, acceleration)
+
+
+func finish_race() -> void:
+	decelerate()
+	race_ended = true
 "
 
 [sub_resource type="Curve2D" id="Curve2D_nadqk"]
@@ -115,6 +136,7 @@ signal track_card_ended
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @export var acceleration := 0.02
+@export var deceleration := 0.02
 
 var current_track_card
 var current_lap := 1
@@ -124,12 +146,14 @@ var speed = 0
 var top_speed = 0.14
 var can_accelerate = true
 
+var race_ended = false
+
 
 func _process(_delta: float) -> void:
 	if !enabled:
 		return
 
-	if speed + acceleration <= top_speed and can_accelerate:
+	if (speed + acceleration <= top_speed and can_accelerate) and !race_ended:
 		accelerate()
 
 	path_follow_2d.progress += speed
@@ -157,13 +181,31 @@ func accelerate() -> void:
 	$AccelerationTimer.start()
 
 
+func decelerate() -> void:
+	if speed == 0:
+		return
+
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+	$DecelerationTimer.start()
+
+
 func _on_acceleration_timer_timeout() -> void:
 	can_accelerate = true
+
+
+func _on_deceleration_timer_timeout() -> void:
+	decelerate()
 
 
 func speed_noise() -> float:
 	var min_noise = 0 - acceleration
 	return randf_range(min_noise, acceleration)
+
+
+func finish_race() -> void:
+	decelerate()
+	race_ended = true
 "
 
 [sub_resource type="Curve2D" id="Curve2D_syl6s"]
@@ -175,6 +217,7 @@ signal track_card_ended
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @export var acceleration := 0.02
+@export var deceleration := 0.02
 
 var current_track_card
 var current_lap := 1
@@ -184,12 +227,14 @@ var speed = 0
 var top_speed = 0.14
 var can_accelerate = true
 
+var race_ended = false
+
 
 func _process(_delta: float) -> void:
 	if !enabled:
 		return
 
-	if speed + acceleration <= top_speed and can_accelerate:
+	if (speed + acceleration <= top_speed and can_accelerate) and !race_ended:
 		accelerate()
 
 	path_follow_2d.progress += speed
@@ -217,13 +262,31 @@ func accelerate() -> void:
 	$AccelerationTimer.start()
 
 
+func decelerate() -> void:
+	if speed == 0:
+		return
+
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+	$DecelerationTimer.start()
+
+
 func _on_acceleration_timer_timeout() -> void:
 	can_accelerate = true
+
+
+func _on_deceleration_timer_timeout() -> void:
+	decelerate()
 
 
 func speed_noise() -> float:
 	var min_noise = 0 - acceleration
 	return randf_range(min_noise, acceleration)
+
+
+func finish_race() -> void:
+	decelerate()
+	race_ended = true
 "
 
 [sub_resource type="Curve2D" id="Curve2D_wpn4w"]
@@ -235,6 +298,7 @@ signal track_card_ended
 
 @onready var path_follow_2d: PathFollow2D = $PathFollow2D
 @export var acceleration := 0.02
+@export var deceleration := 0.02
 
 var current_track_card
 var current_lap := 1
@@ -244,12 +308,14 @@ var speed = 0
 var top_speed = 0.14
 var can_accelerate = true
 
+var race_ended = false
+
 
 func _process(_delta: float) -> void:
 	if !enabled:
 		return
 
-	if speed + acceleration <= top_speed and can_accelerate:
+	if (speed + acceleration <= top_speed and can_accelerate) and !race_ended:
 		accelerate()
 
 	path_follow_2d.progress += speed
@@ -277,13 +343,31 @@ func accelerate() -> void:
 	$AccelerationTimer.start()
 
 
+func decelerate() -> void:
+	if speed == 0:
+		return
+
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+	$DecelerationTimer.start()
+
+
 func _on_acceleration_timer_timeout() -> void:
 	can_accelerate = true
+
+
+func _on_deceleration_timer_timeout() -> void:
+	decelerate()
 
 
 func speed_noise() -> float:
 	var min_noise = 0 - acceleration
 	return randf_range(min_noise, acceleration)
+
+
+func finish_race() -> void:
+	decelerate()
+	race_ended = true
 "
 
 [sub_resource type="Curve2D" id="Curve2D_4hhel"]
@@ -389,6 +473,9 @@ script = ExtResource("17_os5gd")
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
 
+[node name="DecelerationTimer" parent="Components/RaceManager/RacerPaths/CPURacerPath" index="2"]
+wait_time = 0.3
+
 [node name="CPURacerPath2" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
 curve = SubResource("Curve2D_1blyj")
 script = SubResource("GDScript_inwqj")
@@ -398,6 +485,9 @@ stats = ExtResource("19_250oh")
 
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath2/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
+
+[node name="DecelerationTimer" parent="Components/RaceManager/RacerPaths/CPURacerPath2" index="2"]
+wait_time = 0.3
 
 [node name="CPURacerPath3" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
 curve = SubResource("Curve2D_nadqk")
@@ -409,6 +499,9 @@ stats = ExtResource("20_6sr5t")
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath3/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
 
+[node name="DecelerationTimer" parent="Components/RaceManager/RacerPaths/CPURacerPath3" index="2"]
+wait_time = 0.3
+
 [node name="CPURacerPath4" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
 curve = SubResource("Curve2D_syl6s")
 script = SubResource("GDScript_4y8bt")
@@ -418,6 +511,9 @@ stats = ExtResource("21_rubu2")
 
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath4/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
+
+[node name="DecelerationTimer" parent="Components/RaceManager/RacerPaths/CPURacerPath4" index="2"]
+wait_time = 0.3
 
 [node name="CPURacerPath5" parent="Components/RaceManager/RacerPaths" instance=ExtResource("19_bch8b")]
 curve = SubResource("Curve2D_wpn4w")
@@ -429,6 +525,9 @@ stats = ExtResource("22_2steo")
 [node name="CollisionShape2D" parent="Components/RaceManager/RacerPaths/CPURacerPath5/PathFollow2D/CharacterBody2D" index="1"]
 shape = SubResource("CircleShape2D_08m1d")
 
+[node name="DecelerationTimer" parent="Components/RaceManager/RacerPaths/CPURacerPath5" index="2"]
+wait_time = 0.3
+
 [node name="PlayerPath" type="Path2D" parent="Components/RaceManager/RacerPaths" node_paths=PackedStringArray("race_manager")]
 curve = SubResource("Curve2D_4hhel")
 script = ExtResource("19_0a4w3")
@@ -439,6 +538,11 @@ loop = false
 
 [node name="Player" parent="Components/RaceManager/RacerPaths/PlayerPath/PathFollow2D" instance=ExtResource("19_8oqdl")]
 z_index = 10
+three_letter = "BEN"
+
+[node name="DecelerationTimer" type="Timer" parent="Components/RaceManager/RacerPaths/PlayerPath"]
+wait_time = 0.3
+one_shot = true
 
 [node name="SetupUI" type="CanvasLayer" parent="."]
 script = ExtResource("15_r6i58")
@@ -467,18 +571,13 @@ script = ExtResource("16_i23ju")
 
 [node name="RaceUI" type="CanvasLayer" parent="."]
 visible = false
+script = ExtResource("28_wgn8a")
 
 [node name="LapCounter" type="Label" parent="RaceUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -21.0
-offset_right = 21.0
-offset_bottom = 23.0
-grow_horizontal = 2
+offset_right = 82.0
+offset_bottom = 45.0
 text = "Lap 1"
 label_settings = SubResource("LabelSettings_ln77r")
-script = ExtResource("22_j3vho")
 
 [connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
 [connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
@@ -486,6 +585,7 @@ script = ExtResource("22_j3vho")
 [connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="track_card_ended" from="Components/RaceManager/RacerPaths/PlayerPath" to="Components/RaceManager" method="_on_circuit_mover_track_card_ended"]
+[connection signal="timeout" from="Components/RaceManager/RacerPaths/PlayerPath/DecelerationTimer" to="Components/RaceManager/RacerPaths/PlayerPath" method="_on_deceleration_timer_timeout"]
 [connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
 
 [editable path="Components/RaceManager/RacerPaths/CPURacerPath"]

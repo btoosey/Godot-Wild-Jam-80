@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+var three_letter: String
 
 func set_stats(value: CPUStats) -> void:
 	stats = value
@@ -15,3 +16,4 @@ func set_stats(value: CPUStats) -> void:
 		await ready
 
 	sprite_2d.region_rect.position = Vector2(stats.skin_coordinates) * Main.CPU_SPRITE_SIZE
+	three_letter = stats.three_letter

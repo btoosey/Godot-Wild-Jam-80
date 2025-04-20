@@ -7,4 +7,4 @@ script = ExtResource("1_c11te")
 cpu_colour = Color(1, 0.333333, 0.333333, 1)
 skin_coordinates = Vector2i(0, 0)
 cpu_name = ""
-three_letter = ""
+three_letter = "AAA"

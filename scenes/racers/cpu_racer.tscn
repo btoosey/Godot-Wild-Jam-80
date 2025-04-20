@@ -35,4 +35,9 @@ shape = SubResource("CircleShape2D_54n8c")
 wait_time = 0.5
 one_shot = true
 
+[node name="DecelerationTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="AccelerationTimer" to="." method="_on_acceleration_timer_timeout"]
+[connection signal="timeout" from="DecelerationTimer" to="." method="_on_deceleration_timer_timeout"]

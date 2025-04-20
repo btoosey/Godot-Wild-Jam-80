@@ -7,4 +7,4 @@ script = ExtResource("1_og10c")
 cpu_colour = Color(0.407843, 0.776471, 0.372549, 1)
 skin_coordinates = Vector2i(1, 0)
 cpu_name = ""
-three_letter = ""
+three_letter = "BBB"

@@ -1,16 +1,22 @@
 class_name RaceManager
 extends Node
 
-
+@onready var game_state_machine: GameStateMachine = $"../GameStateMachine" as GameStateMachine
 @onready var circuit_manager: CircuitManager = $"../CircuitManager"
 @onready var racer_paths: Node2D = $RacerPaths
 
-
+var racers
 var ordered_track_cards: Array
+
+var current_lap := 1
+var race_distance := 2
+
+var race_order: Array
 
 
 func _ready() -> void:
-	for path in racer_paths.get_children():
+	racers = racer_paths.get_children()
+	for path in racers:
 		path.track_card_ended.connect(_on_racer_path_track_card_ended.bind(path))
 
 
@@ -50,13 +56,22 @@ func update_mover_points(path) -> void:
 
 
 func order_track_cards() -> void:
-	var temp = circuit_manager.circuit_cards
-
-	while temp[0] != circuit_manager.start_finish_card:
-		temp.append(temp.pop_front())
-
-	ordered_track_cards = temp
+	var index = circuit_manager.circuit_cards.find(circuit_manager.start_finish_card)
+	ordered_track_cards = circuit_manager.circuit_cards.slice(index, circuit_manager.circuit_cards.size()) + circuit_manager.circuit_cards.slice(0, index)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	body.get_parent().get_parent().current_lap += 1
+
+	if body.get_parent().get_parent().current_lap > current_lap and current_lap != race_distance:
+		current_lap += 1
+
+	if body.get_parent().get_parent().current_lap > race_distance:
+		race_order.append(body)
+		body.get_parent().get_parent().finish_race()
+		if race_order.size() == racers.size():
+			end_race()
+
+
+func end_race() -> void:
+	game_state_machine._on_transition_requested(game_state_machine.current_state, GameState.State.SETUP)
