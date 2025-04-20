@@ -9,7 +9,7 @@ var racers
 var ordered_track_cards: Array
 
 var current_lap := 1
-var race_distance := 2
+var race_distance := 1
 
 var race_order: Array
 
@@ -18,6 +18,13 @@ func _ready() -> void:
 	racers = racer_paths.get_children()
 	for path in racers:
 		path.track_card_ended.connect(_on_racer_path_track_card_ended.bind(path))
+
+
+func initialize_race() -> void:
+	order_track_cards()
+	set_race_start_points()
+	current_lap = 1
+	race_order = []
 
 
 func set_race_start_points() -> void:
@@ -74,4 +81,5 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 
 func end_race() -> void:
-	game_state_machine._on_transition_requested(game_state_machine.current_state, GameState.State.SETUP)
+	await get_tree().create_timer(1.5).timeout
+	game_state_machine._on_transition_requested(game_state_machine.current_state, GameState.State.RESULTS)

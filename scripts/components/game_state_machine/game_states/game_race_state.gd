@@ -6,11 +6,13 @@ extends GameState
 
 
 func enter() -> void:
-	race_manager.order_track_cards()
-	race_manager.set_race_start_points()
-	racer_paths.enable_racer_paths()
 	race_ui.show()
+	race_manager.initialize_race()
+	racer_paths.show()
+	racer_paths.enable_racer_paths()
+	racer_paths.initialize_racers()
 
 
 func exit() -> void:
 	race_ui.hide()
+	racer_paths.hide()

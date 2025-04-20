@@ -50,11 +50,15 @@ func accelerate() -> void:
 
 
 func decelerate() -> void:
+	speed -= deceleration
+	speed = clampf(speed, 0, top_speed)
+
+
+func decelerate_continously() -> void:
 	if speed == 0:
 		return
 
-	speed -= deceleration
-	speed = clampf(speed, 0, top_speed)
+	decelerate()
 	$DecelerationTimer.start()
 
 
@@ -63,7 +67,7 @@ func _on_acceleration_timer_timeout() -> void:
 
 
 func _on_deceleration_timer_timeout() -> void:
-	decelerate()
+	decelerate_continously()
 
 
 func speed_noise() -> float:
@@ -72,5 +76,5 @@ func speed_noise() -> float:
 
 
 func finish_race() -> void:
-	decelerate()
+	decelerate_continously()
 	race_ended = true
