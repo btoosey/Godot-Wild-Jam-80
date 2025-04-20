@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_xrexe")
-cpu_colour = Color(0.878431, 0.811765, 0.368627, 1)
+cpu_colour = Color(0.949142, 0.832362, 0.320379, 1)
 skin_coordinates = Vector2i(4, 0)
 cpu_name = ""
-three_letter = "EEE"
+three_letter = "YELLOW"
