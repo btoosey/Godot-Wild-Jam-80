@@ -4,7 +4,7 @@ extends Node
 @warning_ignore("unused_signal")
 signal transition_requested(from: GameState, to: State)
 
-enum State {START, SETUP, RACE}
+enum State {START, SETUP, RACE, RESULTS}
 
 @export var state: State
 

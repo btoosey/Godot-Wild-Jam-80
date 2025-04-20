@@ -14,13 +14,16 @@ func _ready() -> void:
 	var t_card_3 := preload("res://data/track_cards/s_corner_01.tres")
 	var t_card_4 := preload("res://data/track_cards/l_corner_long_01.tres")
 	var t_card_5 := preload("res://data/track_cards/j_corner_long_01.tres")
+	var t_card_6 := preload("res://data/track_cards/straight_long_01.tres")
 	var tween := create_tween()
 
+	tween.tween_callback(spawn_track_card.bind(t_card_1))
 	tween.tween_callback(spawn_track_card.bind(t_card_1))
 	tween.tween_callback(spawn_track_card.bind(t_card_2))
 	tween.tween_callback(spawn_track_card.bind(t_card_3))
 	tween.tween_callback(spawn_track_card.bind(t_card_4))
 	tween.tween_callback(spawn_track_card.bind(t_card_5))
+	tween.tween_callback(spawn_track_card.bind(t_card_6))
 
 
 func _get_first_available_area() -> PlayArea:

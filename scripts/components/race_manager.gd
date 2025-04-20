@@ -9,7 +9,7 @@ var racers
 var ordered_track_cards: Array
 
 var current_lap := 1
-var race_distance := 2
+var race_distance := 1
 
 var race_order: Array
 
@@ -74,4 +74,4 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 
 func end_race() -> void:
-	game_state_machine._on_transition_requested(game_state_machine.current_state, GameState.State.SETUP)
+	game_state_machine._on_transition_requested(game_state_machine.current_state, GameState.State.RESULTS)
