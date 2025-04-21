@@ -2,6 +2,8 @@ class_name InventoryTrackCardButton
 extends TextureButton
 
 @export var track_card_stats: TrackCardStats
+@export var shop_buy: AudioStream
+
 @onready var price_label: Label = $PriceLabel
 
 @onready var track_card_spawner: TrackCardSpawner = %TrackCardSpawner
@@ -23,3 +25,4 @@ func _process(_delta: float) -> void:
 func _on_pressed() -> void:
 	track_card_spawner.spawn_track_card(track_card_stats)
 	PlayerStatsGlobal.money -= track_card_stats.price
+	SFXPlayer.play(shop_buy)

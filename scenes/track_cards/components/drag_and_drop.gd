@@ -4,6 +4,8 @@ extends Node
 signal drag_started
 signal dropped(starting_position: Vector2)
 
+@export var card_pickup: AudioStream
+
 @export var enabled: bool = true
 @export var target: Area2D
 
@@ -40,6 +42,7 @@ func _start_dragging() -> void:
 	target.z_index = 98
 	drag_started.emit()
 	get_viewport().set_input_as_handled()
+	SFXPlayer.play(card_pickup)
 
 
 func _drop() -> void:

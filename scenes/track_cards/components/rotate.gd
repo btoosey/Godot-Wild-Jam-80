@@ -5,6 +5,8 @@ extends Node
 @export var target: Area2D
 @export var rotation_degrees: int
 
+@export var card_rotate: AudioStream
+
 
 func _ready() -> void:
 	assert(target, "No target set for Rotate component")
@@ -13,9 +15,10 @@ func _ready() -> void:
 
 func _rotate_card() -> void:
 	target.rotate_card(rotation_degrees)
+	SFXPlayer.play(card_rotate)
 
 
-func _on_target_input_event(_vieport: Node, event: InputEvent) -> void:
+func _on_target_input_event(_viewport: Node, event: InputEvent) -> void:
 	if not enabled:
 		return
 

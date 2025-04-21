@@ -6,6 +6,7 @@ extends GameState
 @onready var background_grid: TileMapLayer = $"../../../BackgroundGrid"
 
 func enter() -> void:
+	MusicPlayer.stop()
 	race_ui.show()
 	race_manager.initialize_race()
 	racer_paths.improve_cpu_stats()

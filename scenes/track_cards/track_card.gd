@@ -2,6 +2,7 @@
 class_name TrackCard
 extends Area2D
 
+@export var card_sell: AudioStream
 @export var stats: TrackCardStats : set = set_stats
 
 @onready var track_card_sprite: Sprite2D = $TrackCardSprite
@@ -53,7 +54,7 @@ func set_stats(value: TrackCardStats) -> void:
 		await ready
 
 	track_card_sprite.region_rect.position = Vector2(stats.skin_coordinates) * Main.TRACK_CARD_SIZE
-	
+
 	circuit_link_1.position = stats.circuit_link_1
 	circuit_link_2.position = stats.circuit_link_2
 
@@ -94,8 +95,10 @@ func _input(event: InputEvent) -> void:
 		return
 
 	if event.is_action_pressed("sell_track_card"):
+		SFXPlayer.play(card_sell)
 		PlayerStatsGlobal.money += stats.price
 		self.queue_free()
+
 
 
 func _on_mouse_entered() -> void:

@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerStatsGlobal="*res://scripts/globals/player_stats_global.gd"
+MusicPlayer="*res://scenes/audio_player/music_player.tscn"
+SFXPlayer="*res://scenes/audio_player/sfx_player.tscn"
 
 [display]
 

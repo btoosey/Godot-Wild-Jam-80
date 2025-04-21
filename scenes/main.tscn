@@ -1,7 +1,8 @@
-[gd_scene load_steps=112 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=119 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
+[ext_resource type="AudioStream" uid="uid://dejo8lu625iho" path="res://assets/sound/music/main_theme_gum_muffle.mp3" id="2_e4jbw"]
 [ext_resource type="TileSet" uid="uid://dg0b4bpfyappr" path="res://assets/tilesets/background_tiles.tres" id="2_roaqh"]
 [ext_resource type="Script" path="res://scripts/components/camera/camera_drag.gd" id="2_tjfnl"]
 [ext_resource type="Script" path="res://scripts/play_area.gd" id="3_ax4fa"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://7uqjcmy1l2fr" path="res://assets/tilesets/terrain.png" id="4_ejs1e"]
 [ext_resource type="Script" path="res://scripts/components/tile_highlighter.gd" id="5_fb313"]
 [ext_resource type="Script" path="res://scripts/components/track_card_mover.gd" id="6_0x7j2"]
+[ext_resource type="AudioStream" uid="uid://cg4wwtif30xl" path="res://assets/sound/sfx/card_drop.mp3" id="11_4brpt"]
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_cards/start_finish_card.tscn" id="11_xgl4w"]
 [ext_resource type="Script" path="res://scripts/components/circuit_manager.gd" id="12_25i6v"]
 [ext_resource type="Script" path="res://scripts/ui/setup_ui/circuit_completion_label.gd" id="12_iiquq"]
@@ -49,6 +51,7 @@
 [ext_resource type="Resource" uid="uid://dreawm5knayh8" path="res://data/track_cards/j_corner_long_01.tres" id="34_g2sw6"]
 [ext_resource type="FontFile" uid="uid://jwpuyq4edb1r" path="res://assets/fonts/Giphurs-ExtraBold.ttf" id="34_u22i0"]
 [ext_resource type="Theme" uid="uid://8putwb2rolgq" path="res://assets/themes/label_settings/shop_title.tres" id="34_ymap1"]
+[ext_resource type="AudioStream" uid="uid://bwmfnrth2bcqy" path="res://assets/sound/sfx/buy_sell_card.mp3" id="35_cpcha"]
 [ext_resource type="Resource" uid="uid://b06qp3okq8bxk" path="res://data/track_cards/l_corner_short_01.tres" id="35_gyckh"]
 [ext_resource type="Resource" uid="uid://01rgt6dtaxbw" path="res://data/track_cards/l_corner_long_01.tres" id="36_yj4f8"]
 [ext_resource type="Resource" uid="uid://c1yq4jeh2k4b5" path="res://data/track_cards/s_corner_01.tres" id="37_o327j"]
@@ -57,6 +60,10 @@
 [ext_resource type="Theme" uid="uid://ggr8gkofyaaf" path="res://assets/themes/button_themes/shop_button.tres" id="46_13pq4"]
 [ext_resource type="Theme" uid="uid://bvqklgvegqfa5" path="res://assets/themes/leaderboard/leaderboard_row.tres" id="49_c46o0"]
 [ext_resource type="Theme" uid="uid://h56iaqwvcibo" path="res://assets/themes/label_settings/leaderboard_label.tres" id="51_0fr01"]
+[ext_resource type="AudioStream" uid="uid://cal10mkgchicd" path="res://assets/sound/sfx/countdown_number.mp3" id="54_5nbya"]
+[ext_resource type="AudioStream" uid="uid://cgrcoq4sb6obe" path="res://assets/sound/sfx/countdown_go.mp3" id="55_wvvcw"]
+[ext_resource type="AudioStream" uid="uid://chnmr8260sr3d" path="res://assets/sound/sfx/caution.mp3" id="58_5orh1"]
+[ext_resource type="AudioStream" uid="uid://c7ur6x0cgxcmw" path="res://assets/sound/music/main_theme_gum.mp3" id="60_qw1ig"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dwkhy"]
 noise_type = 0
@@ -732,6 +739,7 @@ Panel/styles/panel = SubResource("StyleBoxFlat_xcgyj")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jtu5u")
+main_music_theme = ExtResource("2_e4jbw")
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -786,6 +794,7 @@ camera_bottom_limit = 500
 
 [node name="TrackCardMover" type="Node" parent="Components" node_paths=PackedStringArray("play_areas")]
 script = ExtResource("6_0x7j2")
+card_drop = ExtResource("11_4brpt")
 play_areas = [NodePath("../../PlayArea")]
 start_finish_tiles = Array[Vector2i]([Vector2i(4, 4), Vector2i(5, 4), Vector2i(4, 5), Vector2i(5, 5)])
 
@@ -818,6 +827,7 @@ state = 2
 
 [node name="GameResultsState" type="Node" parent="Components/GameStateMachine"]
 script = ExtResource("16_jtsqa")
+main_theme_muffle = ExtResource("2_e4jbw")
 state = 3
 
 [node name="RaceManager" type="Node" parent="Components"]
@@ -982,6 +992,7 @@ texture = SubResource("AtlasTexture_bdk1f")
 [node name="SetupUI" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("15_r6i58")
+shop_buy = ExtResource("35_cpcha")
 
 [node name="Panel" type="Panel" parent="SetupUI"]
 anchors_preset = 2
@@ -1183,6 +1194,10 @@ script = ExtResource("16_i23ju")
 [node name="RaceUI" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("28_wgn8a")
+countdown_sound_number = ExtResource("54_5nbya")
+countdown_sound_go = ExtResource("55_wvvcw")
+caution = ExtResource("58_5orh1")
+main_theme_race = ExtResource("60_qw1ig")
 
 [node name="Countdown" type="Label" parent="RaceUI"]
 visible = false

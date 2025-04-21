@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var shop_buy: AudioStream
+
 @onready var game_state_machine: GameStateMachine = $"../Components/GameStateMachine" as GameStateMachine
 @onready var player_path: Path2D = $"../Components/RaceManager/RacerPaths/PlayerPath"
 
@@ -44,16 +46,20 @@ func _on_start_race_button_pressed() -> void:
 func _on_top_speed_pressed() -> void:
 	player_path.top_speed += 0.02
 	PlayerStatsGlobal.money -= top_speed.price
+	SFXPlayer.play(shop_buy)
 
 
 func _on_accelerator_power_pressed() -> void:
 	player_path.acceleration += 0.01
 	PlayerStatsGlobal.money -= accelerator_power.price
+	SFXPlayer.play(shop_buy)
 
 
 func _on_brake_power_pressed() -> void:
 	player_path.deceleration += 0.01
 	PlayerStatsGlobal.money -= brake_power.price
+	SFXPlayer.play(shop_buy)
+
 
 func _on_shop_pressed() -> void:
 	if displayed:

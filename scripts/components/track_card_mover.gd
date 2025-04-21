@@ -3,6 +3,8 @@ extends Node
 
 signal track_card_final_position_dropped(track_card)
 
+@export var card_drop: AudioStream
+
 @export var play_areas: Array[PlayArea]
 @export var start_finish_tiles: Array[Vector2i]
 
@@ -92,3 +94,5 @@ func _on_track_card_dropped(starting_position: Vector2, track_card: TrackCard) -
 		_move_track_card(track_card, new_area, new_tile)
 
 	track_card_final_position_dropped.emit(track_card)
+
+	SFXPlayer.play(card_drop)
