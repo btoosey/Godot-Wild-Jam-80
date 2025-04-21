@@ -498,13 +498,13 @@ font_color = Color(0.270588, 0.611765, 1, 1)
 shadow_color = Color(1, 0.563827, 0.499969, 1)
 shadow_offset = Vector2(8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5i5j4"]
-atlas = ExtResource("28_j1ivp")
-region = Rect2(97.1943, 64.2207, 32.4267, 63.9829)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdk1f"]
 atlas = ExtResource("28_j1ivp")
 region = Rect2(41.5829, 72.2375, 21.9805, 57.0188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i5j4"]
+atlas = ExtResource("28_j1ivp")
+region = Rect2(97.1943, 64.2207, 32.4267, 63.9829)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dopny"]
 resource_local_to_scene = true
@@ -801,10 +801,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -508.5
-offset_top = -96.0
-offset_right = 410.5
-offset_bottom = 110.0
+offset_left = -532.5
+offset_top = -104.0
+offset_right = 386.5
+offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GRIDSHIFT"
@@ -816,10 +816,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -516.5
-offset_top = -104.0
-offset_right = 402.5
-offset_bottom = 102.0
+offset_left = -540.5
+offset_top = -112.0
+offset_right = 378.5
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GRIDSHIFT"
@@ -834,16 +834,16 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("30_prroa")
 text = "NEW GAME"
 
-[node name="InventoryTrackCardButtons" type="Sprite2D" parent="StartUI"]
-position = Vector2(1172, 242)
-scale = Vector2(9.017, 9.017)
-texture = SubResource("AtlasTexture_5i5j4")
-
 [node name="InventoryTrackCardButtons2" type="Sprite2D" parent="StartUI"]
 position = Vector2(864, 72)
 rotation = -1.5708
 scale = Vector2(9.017, 9.017)
 texture = SubResource("AtlasTexture_bdk1f")
+
+[node name="InventoryTrackCardButtons" type="Sprite2D" parent="StartUI"]
+position = Vector2(1173, 251)
+scale = Vector2(9.017, 9.017)
+texture = SubResource("AtlasTexture_5i5j4")
 
 [node name="InventoryTrackCardButtons3" type="Sprite2D" parent="StartUI"]
 position = Vector2(290.681, 614.362)

@@ -40,6 +40,8 @@ func _process(_delta: float) -> void:
 				show_caution.emit()
 			else:
 				hide_caution.emit()
+		else:
+			hide_caution.emit()
 	else:
 		if (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_1 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_1) or (path_follow_2d.progress_ratio < 1 - current_track_card.speed_min_limit_2 and path_follow_2d.progress_ratio > 1 - current_track_card.speed_max_limit_2):
 			if speed >= current_track_card.speed_threshold:
@@ -49,6 +51,8 @@ func _process(_delta: float) -> void:
 				show_caution.emit()
 			else:
 				hide_caution.emit()
+		else:
+			hide_caution.emit()
 
 
 func accelerate() -> void:

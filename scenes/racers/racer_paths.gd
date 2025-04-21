@@ -16,6 +16,7 @@ func initialize_racers() -> void:
 		path.can_accelerate = true
 		path.race_ended = false
 		path.speed = 0
+		path.current_lap = 1
 		path.path_follow_2d.progress_ratio = 0
 
 
