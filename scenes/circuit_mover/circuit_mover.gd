@@ -58,6 +58,7 @@ func _process(_delta: float) -> void:
 func accelerate() -> void:
 	speed += acceleration
 	speed = clampf(speed, 0, top_speed)
+	
 
 
 func decelerate(value) -> void:

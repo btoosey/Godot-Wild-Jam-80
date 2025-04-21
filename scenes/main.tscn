@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=107 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -636,17 +636,70 @@ line_spacing = -8.0
 font_size = 20
 font_color = Color(0.909804, 0.262745, 0.247059, 1)
 
+[sub_resource type="Theme" id="Theme_aw2ls"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 56
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 180
+Label/fonts/font = ExtResource("34_u22i0")
+Label/styles/normal = SubResource("StyleBoxEmpty_8oy02")
+
+[sub_resource type="Theme" id="Theme_b6qeb"]
+Panel/styles/panel = SubResource("StyleBoxFlat_y3wb1")
+
 [sub_resource type="LabelSettings" id="LabelSettings_ln77r"]
 font_size = 32
-font_color = Color(0, 0.573047, 0.00845426, 1)
+font_color = Color(0.270588, 0.611765, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ijasw"]
 font_size = 32
-font_color = Color(1, 0.333333, 0, 1)
+font_color = Color(1, 0.576471, 0.356863, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_26r2v"]
-font_size = 64
-font_color = Color(0.151276, 0.151276, 0.151276, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_jbm2g"]
+font_size = 20
+font_color = Color(0.270588, 0.611765, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01ewj"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c04ee"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.270588, 0.611765, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_6kbys"]
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/fonts/font = ExtResource("34_u22i0")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_01ewj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_c04ee")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcgyj"]
+bg_color = Color(1, 1, 1, 0.533333)
+
+[sub_resource type="Theme" id="Theme_oebeb"]
+Panel/styles/panel = SubResource("StyleBoxFlat_xcgyj")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jtu5u")
@@ -1092,20 +1145,6 @@ script = ExtResource("16_i23ju")
 visible = false
 script = ExtResource("28_wgn8a")
 
-[node name="LapCounter" type="Label" parent="RaceUI"]
-offset_right = 82.0
-offset_bottom = 45.0
-text = "Lap 1"
-label_settings = SubResource("LabelSettings_ln77r")
-
-[node name="CautionLabel" type="Label" parent="RaceUI"]
-visible = false
-offset_top = 56.0
-offset_right = 143.0
-offset_bottom = 101.0
-text = "CAUTION"
-label_settings = SubResource("LabelSettings_ijasw")
-
 [node name="Countdown" type="Label" parent="RaceUI"]
 visible = false
 anchors_preset = 8
@@ -1113,18 +1152,74 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -33.5
-offset_right = 20.0
-offset_bottom = 33.5
+offset_left = -55.5
+offset_top = -243.0
+offset_right = 55.5
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_aw2ls")
 text = "3"
-label_settings = SubResource("LabelSettings_26r2v")
+
+[node name="Panel" type="Panel" parent="RaceUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -118.0
+offset_right = 423.0
+grow_vertical = 0
+theme = SubResource("Theme_b6qeb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RaceUI/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 412.0
+offset_bottom = 102.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RaceUI/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LapCounter" type="Label" parent="RaceUI/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lap 1"
+label_settings = SubResource("LabelSettings_ln77r")
+
+[node name="CautionLabel" type="Label" parent="RaceUI/Panel/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+text = "CAUTION"
+label_settings = SubResource("LabelSettings_ijasw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RaceUI/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SpeedLabel" type="Label" parent="RaceUI/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0kph"
+label_settings = SubResource("LabelSettings_jbm2g")
+
+[node name="ProgressBar" type="ProgressBar" parent="RaceUI/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = SubResource("Theme_6kbys")
+show_percentage = false
 
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("30_sdypd")
+
+[node name="Panel" type="Panel" parent="ResultsUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_oebeb")
 
 [node name="RaceResults" type="VBoxContainer" parent="ResultsUI"]
 anchors_preset = 8
