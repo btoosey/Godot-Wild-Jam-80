@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=100 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -42,13 +42,17 @@
 [ext_resource type="Script" path="res://scripts/ui/results_ui/results_ui.gd" id="30_sdypd"]
 [ext_resource type="Script" path="res://scripts/ui/results_ui/position.gd" id="31_pgcmh"]
 [ext_resource type="Resource" uid="uid://bvkqr6ki1bc8p" path="res://data/track_cards/c_corner_01.tres" id="32_7ij3m"]
+[ext_resource type="Theme" uid="uid://kgr0yu8ynkok" path="res://assets/themes/shop/shop_panel.tres" id="33_h856h"]
 [ext_resource type="Resource" uid="uid://bvbu0lefe8emx" path="res://data/track_cards/j_corner_short_01.tres" id="33_qq1of"]
 [ext_resource type="Resource" uid="uid://dreawm5knayh8" path="res://data/track_cards/j_corner_long_01.tres" id="34_g2sw6"]
+[ext_resource type="FontFile" uid="uid://jwpuyq4edb1r" path="res://assets/fonts/Giphurs-ExtraBold.ttf" id="34_u22i0"]
+[ext_resource type="Theme" uid="uid://8putwb2rolgq" path="res://assets/themes/label_settings/shop_title.tres" id="34_ymap1"]
 [ext_resource type="Resource" uid="uid://b06qp3okq8bxk" path="res://data/track_cards/l_corner_short_01.tres" id="35_gyckh"]
 [ext_resource type="Resource" uid="uid://01rgt6dtaxbw" path="res://data/track_cards/l_corner_long_01.tres" id="36_yj4f8"]
 [ext_resource type="Resource" uid="uid://c1yq4jeh2k4b5" path="res://data/track_cards/s_corner_01.tres" id="37_o327j"]
 [ext_resource type="Resource" uid="uid://cy6xfsoiujief" path="res://data/track_cards/z_corner_01.tres" id="38_tgdo7"]
 [ext_resource type="Script" path="res://scripts/ui/setup_ui/car_upgrade_button.gd" id="39_pkxc2"]
+[ext_resource type="Theme" uid="uid://ggr8gkofyaaf" path="res://assets/themes/button_themes/shop_button.tres" id="46_13pq4"]
 [ext_resource type="Theme" uid="uid://bvqklgvegqfa5" path="res://assets/themes/leaderboard/leaderboard_row.tres" id="49_c46o0"]
 [ext_resource type="Theme" uid="uid://h56iaqwvcibo" path="res://assets/themes/label_settings/leaderboard_label.tres" id="51_0fr01"]
 
@@ -495,7 +499,7 @@ bg_color = Color(1, 1, 1, 1)
 font = ExtResource("28_h6juv")
 font_size = 216
 font_color = Color(0.270588, 0.611765, 1, 1)
-shadow_color = Color(1, 0.563827, 0.499969, 1)
+shadow_color = Color(1, 0.578273, 0.35551, 1)
 shadow_offset = Vector2(8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bdk1f"]
@@ -505,6 +509,21 @@ region = Rect2(41.5829, 72.2375, 21.9805, 57.0188)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5i5j4"]
 atlas = ExtResource("28_j1ivp")
 region = Rect2(97.1943, 64.2207, 32.4267, 63.9829)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8oy02"]
+
+[sub_resource type="Theme" id="Theme_qupja"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 0.576471, 0.356863, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 10
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("34_u22i0")
+Label/styles/normal = SubResource("StyleBoxEmpty_8oy02")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dopny"]
 resource_local_to_scene = true
@@ -596,8 +615,25 @@ resource_local_to_scene = true
 atlas = ExtResource("28_2fnhu")
 region = Rect2(32, 64, 32, 64)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3wb1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.560784)
+corner_radius_top_right = 8
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_ryj6o"]
+Panel/styles/panel = SubResource("StyleBoxFlat_y3wb1")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhf0t"]
+bg_color = Color(1, 1, 1, 0.560784)
+corner_radius_top_left = 8
+
 [sub_resource type="LabelSettings" id="LabelSettings_2psnu"]
-font_size = 32
+line_spacing = -8.0
+font_size = 20
 font_color = Color(0.909804, 0.262745, 0.247059, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ln77r"]
@@ -859,10 +895,11 @@ script = ExtResource("15_r6i58")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -1010.0
+offset_left = -1037.0
 offset_top = -112.0
-offset_right = 90.0
+offset_right = 103.0
 grow_vertical = 0
+theme = ExtResource("33_h856h")
 
 [node name="ShopUI" type="HBoxContainer" parent="SetupUI/Panel"]
 layout_mode = 1
@@ -871,28 +908,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -242.5
+offset_left = -545.5
 offset_top = -45.5
-offset_right = 242.5
+offset_right = 545.5
 offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 18
 
 [node name="Money" type="Label" parent="SetupUI/Panel/ShopUI"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
+theme = SubResource("Theme_qupja")
 text = "20$"
 
 [node name="TrackCardUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 16
 
 [node name="Straights" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
 layout_mode = 2
 
 [node name="StraightsLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
 layout_mode = 2
+theme = ExtResource("34_ymap1")
 text = "STRAIGHTS"
 
 [node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
@@ -915,6 +954,7 @@ layout_mode = 2
 
 [node name="SingleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
 layout_mode = 2
+theme = ExtResource("34_ymap1")
 text = "SINGLE CORNERS"
 
 [node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
@@ -955,6 +995,7 @@ layout_mode = 2
 
 [node name="DoubleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
 layout_mode = 2
+theme = ExtResource("34_ymap1")
 text = "DOUBLE CORNERS"
 
 [node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
@@ -974,10 +1015,13 @@ track_card_stats = ExtResource("38_tgdo7")
 
 [node name="CarUpgradesUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
 layout_mode = 2
-theme_override_constants/separation = 40
+size_flags_horizontal = 3
+theme_override_constants/separation = -10
 
 [node name="TopSpeed" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("46_13pq4")
 text = "Increase
 Top Speed"
 script = ExtResource("39_pkxc2")
@@ -985,6 +1029,8 @@ price = 5
 
 [node name="AcceleratorPower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("46_13pq4")
 text = "Increase
 Acceleration"
 script = ExtResource("39_pkxc2")
@@ -992,6 +1038,8 @@ price = 5
 
 [node name="BrakePower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("46_13pq4")
 text = "Increase
 Brake Power"
 script = ExtResource("39_pkxc2")
@@ -1000,27 +1048,43 @@ price = 5
 [node name="SHOP" type="Button" parent="SetupUI/Panel/ShopUI"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme = ExtResource("46_13pq4")
 text = "SHOP"
 
-[node name="CircuitCompletion" type="Label" parent="SetupUI"]
-offset_right = 1.0
-offset_bottom = 23.0
+[node name="StartRacePanel" type="Panel" parent="SetupUI"]
+offset_left = 1146.0
+offset_top = 598.0
+offset_right = 1280.0
+offset_bottom = 719.0
+theme = SubResource("Theme_ryj6o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nhf0t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetupUI/StartRacePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -3.0
+offset_right = -17.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CircuitCompletion" type="Label" parent="SetupUI/StartRacePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
 text = "Circuit Incomplete"
 label_settings = SubResource("LabelSettings_2psnu")
+autowrap_mode = 2
 script = ExtResource("12_iiquq")
 incomplete_colour = Color(0.910619, 0.26386, 0.248811, 1)
 complete_colour = Color(0.239546, 0.675515, 0.39479, 1)
 
-[node name="StartRaceButton" type="Button" parent="SetupUI"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -8.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="StartRaceButton" type="Button" parent="SetupUI/StartRacePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("46_13pq4")
 text = "Start Race"
 script = ExtResource("16_i23ju")
 
@@ -1245,10 +1309,10 @@ grow_vertical = 2
 theme = ExtResource("30_prroa")
 text = "Continue"
 
-[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
-[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
-[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
-[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="hide_caution" from="Components/RaceManager/RacerPaths/PlayerPath" to="RaceUI" method="_on_player_path_hide_caution"]
 [connection signal="show_caution" from="Components/RaceManager/RacerPaths/PlayerPath" to="RaceUI" method="_on_player_path_show_caution"]
@@ -1261,7 +1325,7 @@ text = "Continue"
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/AcceleratorPower" to="SetupUI" method="_on_accelerator_power_pressed"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/BrakePower" to="SetupUI" method="_on_brake_power_pressed"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/SHOP" to="SetupUI" method="_on_shop_pressed"]
-[connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
+[connection signal="pressed" from="SetupUI/StartRacePanel/VBoxContainer/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
 [connection signal="pressed" from="ResultsUI/Continue" to="ResultsUI" method="_on_continue_pressed"]
 
 [editable path="Components/RaceManager/RacerPaths/CPURacerPath"]
