@@ -1,16 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnl03j1mq3sp4"]
+[gd_scene load_steps=10 format=3 uid="uid://bnl03j1mq3sp4"]
 
 [ext_resource type="Script" path="res://scenes/track_cards/track_card.gd" id="1_kwd41"]
 [ext_resource type="Texture2D" uid="uid://bfjpbtabtgtfj" path="res://assets/sprites/track_cards/track_card_atlas.png" id="2_eu5ty"]
+[ext_resource type="AudioStream" uid="uid://bwmfnrth2bcqy" path="res://assets/sound/sfx/buy_sell_card.mp3" id="2_gsibs"]
 [ext_resource type="Resource" uid="uid://bvbu0lefe8emx" path="res://data/track_cards/j_corner_short_01.tres" id="2_x1cuq"]
 [ext_resource type="Script" path="res://scenes/track_cards/components/drag_and_drop.gd" id="4_a2fyf"]
 [ext_resource type="Script" path="res://scenes/track_cards/components/rotate.gd" id="5_pbtqp"]
+[ext_resource type="AudioStream" uid="uid://ceskmq863plr0" path="res://assets/sound/sfx/card_pickup.mp3" id="5_w02x6"]
+[ext_resource type="AudioStream" uid="uid://dqokv4j5xdu78" path="res://assets/sound/sfx/card_rotate.mp3" id="7_e5nqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hpu7"]
 size = Vector2(58, 122)
 
 [node name="TrackCard" type="Area2D" groups=["track_cards"]]
 script = ExtResource("1_kwd41")
+card_sell = ExtResource("2_gsibs")
 stats = ExtResource("2_x1cuq")
 
 [node name="TrackCardSprite" type="Sprite2D" parent="."]
@@ -27,12 +31,14 @@ shape = SubResource("RectangleShape2D_3hpu7")
 
 [node name="DragAndDrop" type="Node" parent="Components" node_paths=PackedStringArray("target")]
 script = ExtResource("4_a2fyf")
+card_pickup = ExtResource("5_w02x6")
 target = NodePath("../..")
 
 [node name="Rotate" type="Node" parent="Components" node_paths=PackedStringArray("target")]
 script = ExtResource("5_pbtqp")
 target = NodePath("../..")
 rotation_degrees = 90
+card_rotate = ExtResource("7_e5nqj")
 
 [node name="CircuitLinks" type="Node2D" parent="."]
 

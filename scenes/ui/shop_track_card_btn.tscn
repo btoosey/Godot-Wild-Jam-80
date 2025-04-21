@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbd8rlqckvo1u"]
+[gd_scene load_steps=8 format=3 uid="uid://bbd8rlqckvo1u"]
 
 [ext_resource type="Script" path="res://scripts/ui/setup_ui/shop_track_card_btn.gd" id="1_4sde8"]
 [ext_resource type="Texture2D" uid="uid://ehh8dwpvv2jj" path="res://assets/sprites/ui/setup/inventory_track_card_buttons.png" id="1_vm8u0"]
 [ext_resource type="Texture2D" uid="uid://ccur0biq86gy6" path="res://assets/sprites/ui/setup/inventory_track_card_buttons_disabled.png" id="2_oulb0"]
 [ext_resource type="Theme" uid="uid://d34682v0n1rv5" path="res://assets/themes/label_settings/shop_price.tres" id="4_bgybt"]
+[ext_resource type="AudioStream" uid="uid://bwmfnrth2bcqy" path="res://assets/sound/sfx/buy_sell_card.mp3" id="4_elrkr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdesc"]
 resource_local_to_scene = true
@@ -19,6 +20,7 @@ region = Rect2(32, 0, 32, 64)
 texture_normal = SubResource("AtlasTexture_fdesc")
 texture_disabled = SubResource("AtlasTexture_xls45")
 script = ExtResource("1_4sde8")
+shop_buy = ExtResource("4_elrkr")
 
 [node name="PriceLabel" type="Label" parent="."]
 z_index = 2
