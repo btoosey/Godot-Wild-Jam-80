@@ -14,6 +14,7 @@ var race_distance := 2
 var race_order: Array
 
 
+
 func _ready() -> void:
 	racers = racer_paths.get_children()
 	for path in racers:

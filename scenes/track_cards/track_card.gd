@@ -85,6 +85,9 @@ func reset_after_dragging(starting_position: Vector2, orientation: int) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if PlayerStatsGlobal.first_race == true:
+		return
+
 	if !hovering:
 		return
 

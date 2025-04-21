@@ -4,8 +4,11 @@ extends Node2D
 @export var map_width: int
 @export var map_height: int
 
+
 func _ready() -> void:
+	fnl.seed = randi()
 	generate_map()
+
 
 func generate_map() -> void:
 	for x in map_width:
