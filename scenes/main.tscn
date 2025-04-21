@@ -939,10 +939,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -532.5
-offset_top = -104.0
-offset_right = 386.5
-offset_bottom = 102.0
+offset_left = -531.5
+offset_top = -102.0
+offset_right = 387.5
+offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GRIDSHIFT"
@@ -954,10 +954,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -540.5
-offset_top = -112.0
-offset_right = 378.5
-offset_bottom = 94.0
+offset_left = -539.5
+offset_top = -110.0
+offset_right = 379.5
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GRIDSHIFT"
@@ -984,7 +984,7 @@ scale = Vector2(9.017, 9.017)
 texture = SubResource("AtlasTexture_5i5j4")
 
 [node name="InventoryTrackCardButtons3" type="Sprite2D" parent="StartUI"]
-position = Vector2(290.681, 614.362)
+position = Vector2(280.681, 616.362)
 rotation = 1.5708
 scale = Vector2(10.0606, 10.0606)
 texture = SubResource("AtlasTexture_bdk1f")
@@ -1200,7 +1200,6 @@ caution = ExtResource("58_5orh1")
 main_theme_race = ExtResource("60_qw1ig")
 
 [node name="Countdown" type="Label" parent="RaceUI"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

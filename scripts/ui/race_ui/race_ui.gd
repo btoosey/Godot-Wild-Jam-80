@@ -15,11 +15,13 @@ extends CanvasLayer
 @onready var lap_counter: Label = $Panel/VBoxContainer/HBoxContainer2/LapCounter
 @onready var caution_label: Label = $Panel/VBoxContainer/HBoxContainer2/CautionLabel
 @onready var progress_bar: ProgressBar = $Panel/VBoxContainer/HBoxContainer/ProgressBar
+@onready var speed_label: Label = $Panel/VBoxContainer/HBoxContainer/SpeedLabel
 
 
 func _process(_delta: float) -> void:
 	lap_counter.text = str("Lap ", race_manager.current_lap, "/", race_manager.race_distance)
 	progress_bar.value = player_path.speed
+	speed_label.text = str((player_path.speed) * 500, "mph")
 
 
 func _on_player_path_hide_caution() -> void:

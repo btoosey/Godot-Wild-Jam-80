@@ -1,3 +1,4 @@
 extends Node
 
-var money := 0
+var money := 3
+var first_race := true
