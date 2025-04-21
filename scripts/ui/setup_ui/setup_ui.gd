@@ -64,11 +64,11 @@ func _on_shop_pressed() -> void:
 
 func hide_shop_ui() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property(panel, "position", Vector2(-1037, 608), 0.4)
+	tween.tween_property(panel, "position", Vector2(-994, 590), 0.4)
 	displayed = false
 
 
 func show_shop_ui() -> void:
 	var tween = get_tree().create_tween()
-	tween.tween_property(panel, "position", Vector2(0, 608), 0.4)
+	tween.tween_property(panel, "position", Vector2(0, 590), 0.4)
 	displayed = true

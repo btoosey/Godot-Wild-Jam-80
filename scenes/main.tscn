@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=112 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/components/camera/camera_drag.gd" id="2_tjfnl"]
 [ext_resource type="Script" path="res://scripts/play_area.gd" id="3_ax4fa"]
 [ext_resource type="Script" path="res://scripts/track_card_grid.gd" id="3_ew15e"]
+[ext_resource type="Script" path="res://scripts/components/background_generator.gd" id="3_omeax"]
+[ext_resource type="Texture2D" uid="uid://7uqjcmy1l2fr" path="res://assets/tilesets/terrain.png" id="4_ejs1e"]
 [ext_resource type="Script" path="res://scripts/components/tile_highlighter.gd" id="5_fb313"]
 [ext_resource type="Script" path="res://scripts/components/track_card_mover.gd" id="6_0x7j2"]
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_cards/start_finish_card.tscn" id="11_xgl4w"]
@@ -55,6 +57,27 @@
 [ext_resource type="Theme" uid="uid://ggr8gkofyaaf" path="res://assets/themes/button_themes/shop_button.tres" id="46_13pq4"]
 [ext_resource type="Theme" uid="uid://bvqklgvegqfa5" path="res://assets/themes/leaderboard/leaderboard_row.tres" id="49_c46o0"]
 [ext_resource type="Theme" uid="uid://h56iaqwvcibo" path="res://assets/themes/label_settings/leaderboard_label.tres" id="51_0fr01"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dwkhy"]
+noise_type = 0
+frequency = 0.0109
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jniv"]
+texture = ExtResource("4_ejs1e")
+texture_region_size = Vector2i(2, 2)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ecvhm"]
+tile_size = Vector2i(2, 2)
+sources/0 = SubResource("TileSetAtlasSource_8jniv")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -621,6 +644,9 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(1, 1, 1, 0.560784)
+border_width_top = 6
+border_width_right = 6
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_right = 8
 corner_detail = 5
 
@@ -629,6 +655,9 @@ Panel/styles/panel = SubResource("StyleBoxFlat_y3wb1")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhf0t"]
 bg_color = Color(1, 1, 1, 0.560784)
+border_width_left = 6
+border_width_top = 6
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 8
 
 [sub_resource type="LabelSettings" id="LabelSettings_2psnu"]
@@ -706,7 +735,17 @@ script = ExtResource("1_jtu5u")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="BackgroundGrid" type="TileMapLayer" parent="Visuals"]
+[node name="BackgroundGenerator" type="Node2D" parent="Visuals"]
+position = Vector2(-48, -40)
+script = ExtResource("3_omeax")
+fnl = SubResource("FastNoiseLite_dwkhy")
+map_width = 640
+map_height = 360
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Visuals/BackgroundGenerator"]
+tile_set = SubResource("TileSet_ecvhm")
+
+[node name="BackgroundGrid" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAA=")
 tile_set = ExtResource("2_roaqh")
 metadata/_edit_lock_ = true
@@ -948,9 +987,9 @@ script = ExtResource("15_r6i58")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -1037.0
-offset_top = -112.0
-offset_right = 103.0
+offset_left = -994.0
+offset_top = -130.0
+offset_right = 114.0
 grow_vertical = 0
 theme = ExtResource("33_h856h")
 
@@ -961,10 +1000,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -545.5
-offset_top = -45.5
-offset_right = 545.5
-offset_bottom = 45.5
+offset_left = -545.0
+offset_top = -45.0
+offset_right = 520.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 18
@@ -1105,8 +1144,8 @@ theme = ExtResource("46_13pq4")
 text = "SHOP"
 
 [node name="StartRacePanel" type="Panel" parent="SetupUI"]
-offset_left = 1146.0
-offset_top = 598.0
+offset_left = 1103.0
+offset_top = 571.0
 offset_right = 1280.0
 offset_bottom = 719.0
 theme = SubResource("Theme_ryj6o")
@@ -1117,10 +1156,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 17.0
-offset_top = -3.0
-offset_right = -17.0
-offset_bottom = -4.0
+offset_left = 31.0
+offset_top = 15.0
+offset_right = -27.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 
