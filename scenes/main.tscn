@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://cjc7ccvfnip1g"]
+[gd_scene load_steps=112 format=4 uid="uid://cjc7ccvfnip1g"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_jtu5u"]
 [ext_resource type="Texture2D" uid="uid://c3ubhp7usn2oc" path="res://assets/sprites/background/background_tile.png" id="2_57wjm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/components/camera/camera_drag.gd" id="2_tjfnl"]
 [ext_resource type="Script" path="res://scripts/play_area.gd" id="3_ax4fa"]
 [ext_resource type="Script" path="res://scripts/track_card_grid.gd" id="3_ew15e"]
+[ext_resource type="Script" path="res://scripts/components/background_generator.gd" id="3_omeax"]
+[ext_resource type="Texture2D" uid="uid://7uqjcmy1l2fr" path="res://assets/tilesets/terrain.png" id="4_ejs1e"]
 [ext_resource type="Script" path="res://scripts/components/tile_highlighter.gd" id="5_fb313"]
 [ext_resource type="Script" path="res://scripts/components/track_card_mover.gd" id="6_0x7j2"]
 [ext_resource type="PackedScene" uid="uid://bau0byp2es6fk" path="res://scenes/track_cards/start_finish_card.tscn" id="11_xgl4w"]
@@ -33,19 +35,49 @@
 [ext_resource type="Script" path="res://scripts/ui/start_ui/start_ui.gd" id="27_xdqku"]
 [ext_resource type="Resource" uid="uid://b44jgapopo1mv" path="res://data/track_cards/straight_long_01.tres" id="28_0g71v"]
 [ext_resource type="Texture2D" uid="uid://ccur0biq86gy6" path="res://assets/sprites/ui/setup/inventory_track_card_buttons_disabled.png" id="28_2fnhu"]
+[ext_resource type="FontFile" uid="uid://du3w8uvtiy6ex" path="res://assets/fonts/Stifly.ttf" id="28_h6juv"]
 [ext_resource type="Texture2D" uid="uid://ehh8dwpvv2jj" path="res://assets/sprites/ui/setup/inventory_track_card_buttons.png" id="28_j1ivp"]
 [ext_resource type="Script" path="res://scripts/ui/race_ui/race_ui.gd" id="28_wgn8a"]
 [ext_resource type="Resource" uid="uid://nkx03tnwarhs" path="res://data/track_cards/straight_short_01.tres" id="29_0lok0"]
+[ext_resource type="LabelSettings" uid="uid://c2g7yxbddwmsb" path="res://assets/themes/label_settings/title.tres" id="29_dh7ml"]
+[ext_resource type="Theme" uid="uid://br11v8qh14ro6" path="res://assets/themes/button_themes/menu_button.tres" id="30_prroa"]
 [ext_resource type="Script" path="res://scripts/ui/results_ui/results_ui.gd" id="30_sdypd"]
 [ext_resource type="Script" path="res://scripts/ui/results_ui/position.gd" id="31_pgcmh"]
 [ext_resource type="Resource" uid="uid://bvkqr6ki1bc8p" path="res://data/track_cards/c_corner_01.tres" id="32_7ij3m"]
+[ext_resource type="Theme" uid="uid://kgr0yu8ynkok" path="res://assets/themes/shop/shop_panel.tres" id="33_h856h"]
 [ext_resource type="Resource" uid="uid://bvbu0lefe8emx" path="res://data/track_cards/j_corner_short_01.tres" id="33_qq1of"]
 [ext_resource type="Resource" uid="uid://dreawm5knayh8" path="res://data/track_cards/j_corner_long_01.tres" id="34_g2sw6"]
+[ext_resource type="FontFile" uid="uid://jwpuyq4edb1r" path="res://assets/fonts/Giphurs-ExtraBold.ttf" id="34_u22i0"]
+[ext_resource type="Theme" uid="uid://8putwb2rolgq" path="res://assets/themes/label_settings/shop_title.tres" id="34_ymap1"]
 [ext_resource type="Resource" uid="uid://b06qp3okq8bxk" path="res://data/track_cards/l_corner_short_01.tres" id="35_gyckh"]
 [ext_resource type="Resource" uid="uid://01rgt6dtaxbw" path="res://data/track_cards/l_corner_long_01.tres" id="36_yj4f8"]
 [ext_resource type="Resource" uid="uid://c1yq4jeh2k4b5" path="res://data/track_cards/s_corner_01.tres" id="37_o327j"]
 [ext_resource type="Resource" uid="uid://cy6xfsoiujief" path="res://data/track_cards/z_corner_01.tres" id="38_tgdo7"]
 [ext_resource type="Script" path="res://scripts/ui/setup_ui/car_upgrade_button.gd" id="39_pkxc2"]
+[ext_resource type="Theme" uid="uid://ggr8gkofyaaf" path="res://assets/themes/button_themes/shop_button.tres" id="46_13pq4"]
+[ext_resource type="Theme" uid="uid://bvqklgvegqfa5" path="res://assets/themes/leaderboard/leaderboard_row.tres" id="49_c46o0"]
+[ext_resource type="Theme" uid="uid://h56iaqwvcibo" path="res://assets/themes/label_settings/leaderboard_label.tres" id="51_0fr01"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dwkhy"]
+noise_type = 0
+frequency = 0.0109
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8jniv"]
+texture = ExtResource("4_ejs1e")
+texture_region_size = Vector2i(2, 2)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ecvhm"]
+tile_size = Vector2i(2, 2)
+sources/0 = SubResource("TileSetAtlasSource_8jniv")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_roq4t"]
 texture = ExtResource("2_57wjm")
@@ -486,9 +518,35 @@ bake_interval = 4.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eno2j"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_l0qsf"]
-font_size = 64
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_6oc6j"]
+font = ExtResource("28_h6juv")
+font_size = 216
+font_color = Color(0.270588, 0.611765, 1, 1)
+shadow_color = Color(1, 0.578273, 0.35551, 1)
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdk1f"]
+atlas = ExtResource("28_j1ivp")
+region = Rect2(41.5829, 72.2375, 21.9805, 57.0188)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i5j4"]
+atlas = ExtResource("28_j1ivp")
+region = Rect2(97.1943, 64.2207, 32.4267, 63.9829)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8oy02"]
+
+[sub_resource type="Theme" id="Theme_qupja"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 0.576471, 0.356863, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 10
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("34_u22i0")
+Label/styles/normal = SubResource("StyleBoxEmpty_8oy02")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dopny"]
 resource_local_to_scene = true
@@ -580,29 +638,115 @@ resource_local_to_scene = true
 atlas = ExtResource("28_2fnhu")
 region = Rect2(32, 64, 32, 64)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3wb1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.560784)
+border_width_top = 6
+border_width_right = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 8
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_ryj6o"]
+Panel/styles/panel = SubResource("StyleBoxFlat_y3wb1")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhf0t"]
+bg_color = Color(1, 1, 1, 0.560784)
+border_width_left = 6
+border_width_top = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+
 [sub_resource type="LabelSettings" id="LabelSettings_2psnu"]
-font_size = 32
+line_spacing = -8.0
+font_size = 20
 font_color = Color(0.909804, 0.262745, 0.247059, 1)
+
+[sub_resource type="Theme" id="Theme_aw2ls"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 56
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 180
+Label/fonts/font = ExtResource("34_u22i0")
+Label/styles/normal = SubResource("StyleBoxEmpty_8oy02")
+
+[sub_resource type="Theme" id="Theme_b6qeb"]
+Panel/styles/panel = SubResource("StyleBoxFlat_y3wb1")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ln77r"]
 font_size = 32
-font_color = Color(0, 0.573047, 0.00845426, 1)
+font_color = Color(0.270588, 0.611765, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ijasw"]
 font_size = 32
-font_color = Color(1, 0.333333, 0, 1)
+font_color = Color(1, 0.576471, 0.356863, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_26r2v"]
-font_size = 64
-font_color = Color(0.151276, 0.151276, 0.151276, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_jbm2g"]
+font_size = 20
+font_color = Color(0.270588, 0.611765, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01ewj"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c04ee"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.270588, 0.611765, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_6kbys"]
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 0
+ProgressBar/font_sizes/font_size = 16
+ProgressBar/fonts/font = ExtResource("34_u22i0")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_01ewj")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_c04ee")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcgyj"]
+bg_color = Color(1, 1, 1, 0.533333)
+
+[sub_resource type="Theme" id="Theme_oebeb"]
+Panel/styles/panel = SubResource("StyleBoxFlat_xcgyj")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jtu5u")
 
 [node name="Visuals" type="Node2D" parent="."]
 
-[node name="BackgroundGrid" type="TileMapLayer" parent="Visuals"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAABAAsAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAKAAAAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAAAAAAAAAAAAAALAAEAAAAAAAAAAAALAAIAAAAAAAAAAAALAAMAAAAAAAAAAAALAAQAAAAAAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAJAAsAAAAAAAAAAAA=")
+[node name="BackgroundGenerator" type="Node2D" parent="Visuals"]
+position = Vector2(-48, -40)
+script = ExtResource("3_omeax")
+fnl = SubResource("FastNoiseLite_dwkhy")
+map_width = 640
+map_height = 360
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Visuals/BackgroundGenerator"]
+tile_set = SubResource("TileSet_ecvhm")
+
+[node name="BackgroundGrid" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAAAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAACAAAAAAAAAAAAAAACAAEAAAAAAAAAAAACAAIAAAAAAAAAAAACAAMAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAAAAAAAAAACAAcAAAAAAAAAAAACAAgAAAAAAAAAAAACAAkAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAAAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAEAAcAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAAAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAA=")
 tile_set = ExtResource("2_roaqh")
 metadata/_edit_lock_ = true
 
@@ -615,7 +759,7 @@ metadata/_edit_lock_ = true
 
 [node name="PlayAreaTrackCardGrid" type="Node2D" parent="PlayArea"]
 script = ExtResource("3_ew15e")
-size = Vector2i(12, 12)
+size = Vector2i(10, 10)
 
 [node name="Highlight" type="TileMapLayer" parent="PlayArea"]
 tile_set = ExtResource("2_roaqh")
@@ -627,30 +771,30 @@ highlight_layer = NodePath("../Highlight")
 tile = Vector2i(1, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(384, 384)
+position = Vector2(320, 320)
 zoom = Vector2(2, 2)
 
 [node name="CameraDrag" type="Node2D" parent="Camera2D" node_paths=PackedStringArray("camera")]
 script = ExtResource("2_tjfnl")
 camera = NodePath("..")
 camera_left_limit = 280
-camera_right_limit = 488
+camera_right_limit = 360
 camera_top_limit = 140
-camera_bottom_limit = 628
+camera_bottom_limit = 500
 
 [node name="Components" type="Node" parent="."]
 
 [node name="TrackCardMover" type="Node" parent="Components" node_paths=PackedStringArray("play_areas")]
 script = ExtResource("6_0x7j2")
 play_areas = [NodePath("../../PlayArea")]
-start_finish_tiles = Array[Vector2i]([Vector2i(5, 5), Vector2i(6, 5), Vector2i(5, 6), Vector2i(6, 6)])
+start_finish_tiles = Array[Vector2i]([Vector2i(4, 4), Vector2i(5, 4), Vector2i(4, 5), Vector2i(5, 5)])
 
 [node name="CircuitManager" type="Node" parent="Components" node_paths=PackedStringArray("track_card_mover")]
 script = ExtResource("12_25i6v")
 track_card_mover = NodePath("../TrackCardMover")
 
 [node name="StartFinishCard" parent="Components/CircuitManager" instance=ExtResource("11_xgl4w")]
-position = Vector2(384, 384)
+position = Vector2(320, 320)
 
 [node name="TrackCardSpawner" type="Node" parent="Components" node_paths=PackedStringArray("play_area")]
 unique_name_in_owner = true
@@ -680,7 +824,7 @@ state = 3
 script = ExtResource("16_2u0pc")
 
 [node name="Area2D" type="Area2D" parent="Components/RaceManager"]
-position = Vector2(365, 416)
+position = Vector2(301, 352)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Components/RaceManager/Area2D"]
 shape = SubResource("RectangleShape2D_ybjkt")
@@ -779,34 +923,61 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eno2j")
 
-[node name="Label" type="Label" parent="StartUI"]
+[node name="TitleShadow" type="Label" parent="StartUI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -532.5
+offset_top = -104.0
+offset_right = 386.5
+offset_bottom = 102.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "GRIDSHIFT"
-label_settings = SubResource("LabelSettings_l0qsf")
+label_settings = SubResource("LabelSettings_6oc6j")
 
-[node name="Button" type="Button" parent="StartUI"]
+[node name="Title" type="Label" parent="StartUI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = 116.0
-offset_right = 4.0
-offset_bottom = 124.0
+offset_left = -540.5
+offset_top = -112.0
+offset_right = 378.5
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "New Game"
+text = "GRIDSHIFT"
+label_settings = ExtResource("29_dh7ml")
+
+[node name="Button" type="Button" parent="StartUI"]
+offset_left = 780.0
+offset_top = 554.0
+offset_right = 1011.0
+offset_bottom = 618.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("30_prroa")
+text = "NEW GAME"
+
+[node name="InventoryTrackCardButtons2" type="Sprite2D" parent="StartUI"]
+position = Vector2(864, 72)
+rotation = -1.5708
+scale = Vector2(9.017, 9.017)
+texture = SubResource("AtlasTexture_bdk1f")
+
+[node name="InventoryTrackCardButtons" type="Sprite2D" parent="StartUI"]
+position = Vector2(1173, 251)
+scale = Vector2(9.017, 9.017)
+texture = SubResource("AtlasTexture_5i5j4")
+
+[node name="InventoryTrackCardButtons3" type="Sprite2D" parent="StartUI"]
+position = Vector2(290.681, 614.362)
+rotation = 1.5708
+scale = Vector2(10.0606, 10.0606)
+texture = SubResource("AtlasTexture_bdk1f")
 
 [node name="SetupUI" type="CanvasLayer" parent="."]
 visible = false
@@ -816,10 +987,11 @@ script = ExtResource("15_r6i58")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -1010.0
-offset_top = -112.0
-offset_right = 90.0
+offset_left = -994.0
+offset_top = -130.0
+offset_right = 114.0
 grow_vertical = 0
+theme = ExtResource("33_h856h")
 
 [node name="ShopUI" type="HBoxContainer" parent="SetupUI/Panel"]
 layout_mode = 1
@@ -828,28 +1000,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -242.5
-offset_top = -45.5
-offset_right = 242.5
-offset_bottom = 45.5
+offset_left = -545.0
+offset_top = -45.0
+offset_right = 520.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 18
 
 [node name="Money" type="Label" parent="SetupUI/Panel/ShopUI"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
+theme = SubResource("Theme_qupja")
 text = "20$"
 
 [node name="TrackCardUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 16
 
 [node name="Straights" type="VBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI"]
 layout_mode = 2
 
 [node name="StraightsLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
 layout_mode = 2
+theme = ExtResource("34_ymap1")
 text = "STRAIGHTS"
 
 [node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/Straights"]
@@ -872,6 +1046,7 @@ layout_mode = 2
 
 [node name="SingleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
 layout_mode = 2
+theme = ExtResource("34_ymap1")
 text = "SINGLE CORNERS"
 
 [node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/SingleCorners"]
@@ -912,6 +1087,7 @@ layout_mode = 2
 
 [node name="DoubleCornersLabel" type="Label" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
 layout_mode = 2
+theme = ExtResource("34_ymap1")
 text = "DOUBLE CORNERS"
 
 [node name="Cards" type="HBoxContainer" parent="SetupUI/Panel/ShopUI/TrackCardUI/DoubleCorners"]
@@ -931,10 +1107,13 @@ track_card_stats = ExtResource("38_tgdo7")
 
 [node name="CarUpgradesUI" type="HBoxContainer" parent="SetupUI/Panel/ShopUI"]
 layout_mode = 2
-theme_override_constants/separation = 40
+size_flags_horizontal = 3
+theme_override_constants/separation = -10
 
 [node name="TopSpeed" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("46_13pq4")
 text = "Increase
 Top Speed"
 script = ExtResource("39_pkxc2")
@@ -942,6 +1121,8 @@ price = 5
 
 [node name="AcceleratorPower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("46_13pq4")
 text = "Increase
 Acceleration"
 script = ExtResource("39_pkxc2")
@@ -949,6 +1130,8 @@ price = 5
 
 [node name="BrakePower" type="Button" parent="SetupUI/Panel/ShopUI/CarUpgradesUI"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("46_13pq4")
 text = "Increase
 Brake Power"
 script = ExtResource("39_pkxc2")
@@ -957,47 +1140,49 @@ price = 5
 [node name="SHOP" type="Button" parent="SetupUI/Panel/ShopUI"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme = ExtResource("46_13pq4")
 text = "SHOP"
 
-[node name="CircuitCompletion" type="Label" parent="SetupUI"]
-offset_right = 1.0
-offset_bottom = 23.0
+[node name="StartRacePanel" type="Panel" parent="SetupUI"]
+offset_left = 1103.0
+offset_top = 571.0
+offset_right = 1280.0
+offset_bottom = 719.0
+theme = SubResource("Theme_ryj6o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nhf0t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetupUI/StartRacePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 15.0
+offset_right = -27.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CircuitCompletion" type="Label" parent="SetupUI/StartRacePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
 text = "Circuit Incomplete"
 label_settings = SubResource("LabelSettings_2psnu")
+autowrap_mode = 2
 script = ExtResource("12_iiquq")
 incomplete_colour = Color(0.910619, 0.26386, 0.248811, 1)
 complete_colour = Color(0.239546, 0.675515, 0.39479, 1)
 
-[node name="StartRaceButton" type="Button" parent="SetupUI"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -8.0
-offset_top = -8.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="StartRaceButton" type="Button" parent="SetupUI/StartRacePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("46_13pq4")
 text = "Start Race"
 script = ExtResource("16_i23ju")
 
 [node name="RaceUI" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("28_wgn8a")
-
-[node name="LapCounter" type="Label" parent="RaceUI"]
-offset_right = 82.0
-offset_bottom = 45.0
-text = "Lap 1"
-label_settings = SubResource("LabelSettings_ln77r")
-
-[node name="CautionLabel" type="Label" parent="RaceUI"]
-visible = false
-offset_top = 56.0
-offset_right = 143.0
-offset_bottom = 101.0
-text = "CAUTION"
-label_settings = SubResource("LabelSettings_ijasw")
 
 [node name="Countdown" type="Label" parent="RaceUI"]
 visible = false
@@ -1006,18 +1191,74 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -33.5
-offset_right = 20.0
-offset_bottom = 33.5
+offset_left = -55.5
+offset_top = -243.0
+offset_right = 55.5
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_aw2ls")
 text = "3"
-label_settings = SubResource("LabelSettings_26r2v")
+
+[node name="Panel" type="Panel" parent="RaceUI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -118.0
+offset_right = 423.0
+grow_vertical = 0
+theme = SubResource("Theme_b6qeb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RaceUI/Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 412.0
+offset_bottom = 102.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RaceUI/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LapCounter" type="Label" parent="RaceUI/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lap 1"
+label_settings = SubResource("LabelSettings_ln77r")
+
+[node name="CautionLabel" type="Label" parent="RaceUI/Panel/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+text = "CAUTION"
+label_settings = SubResource("LabelSettings_ijasw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RaceUI/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SpeedLabel" type="Label" parent="RaceUI/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0kph"
+label_settings = SubResource("LabelSettings_jbm2g")
+
+[node name="ProgressBar" type="ProgressBar" parent="RaceUI/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = SubResource("Theme_6kbys")
+show_percentage = false
 
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("30_sdypd")
+
+[node name="Panel" type="Panel" parent="ResultsUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_oebeb")
 
 [node name="RaceResults" type="VBoxContainer" parent="ResultsUI"]
 anchors_preset = 8
@@ -1025,108 +1266,187 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -182.5
+offset_top = -227.5
+offset_right = 182.5
+offset_bottom = 115.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Titles" type="HBoxContainer" parent="ResultsUI/RaceResults"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("49_c46o0")
+
+[node name="PositionTitle" type="Label" parent="ResultsUI/RaceResults/Titles"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("51_0fr01")
+text = "Position"
+
+[node name="NameTitle" type="Label" parent="ResultsUI/RaceResults/Titles"]
+layout_mode = 2
+theme = ExtResource("51_0fr01")
+text = "Racer"
+
+[node name="PrizeMoneyTitle" type="Label" parent="ResultsUI/RaceResults/Titles"]
+layout_mode = 2
+theme = ExtResource("51_0fr01")
+text = "Prize Money"
+
+[node name="Line2D" type="Line2D" parent="ResultsUI/RaceResults"]
+position = Vector2(-10, 3)
+points = PackedVector2Array(659, 45.5, 24, 45.5)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
 
 [node name="Position1" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position1"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position2" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position2"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position3" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position3"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position4" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position4"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position5" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position5"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Position6" type="HBoxContainer" parent="ResultsUI/RaceResults"]
 layout_mode = 2
+theme = ExtResource("49_c46o0")
 script = ExtResource("31_pgcmh")
 
 [node name="PositionLabel" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("51_0fr01")
 
 [node name="NameLabel" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("51_0fr01")
 
 [node name="PrizeMoney" type="Label" parent="ResultsUI/RaceResults/Position6"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("51_0fr01")
 
 [node name="Continue" type="Button" parent="ResultsUI"]
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -8.0
-offset_right = 4.0
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 205.5
+offset_right = 74.0
+offset_bottom = 258.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+theme = ExtResource("30_prroa")
 text = "Continue"
 
-[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
-[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
-[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
-[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/CircuitCompletion" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_complete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/StartRaceButton" method="_on_circuit_manager_circuit_complete"]
+[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/CircuitCompletion" method="_on_circuit_manager_circuit_incomplete"]
+[connection signal="circuit_incomplete" from="Components/CircuitManager" to="SetupUI/StartRacePanel/VBoxContainer/StartRaceButton" method="_on_circuit_manager_circuit_incomplete"]
 [connection signal="body_exited" from="Components/RaceManager/Area2D" to="Components/RaceManager" method="_on_area_2d_body_exited"]
 [connection signal="hide_caution" from="Components/RaceManager/RacerPaths/PlayerPath" to="RaceUI" method="_on_player_path_hide_caution"]
 [connection signal="show_caution" from="Components/RaceManager/RacerPaths/PlayerPath" to="RaceUI" method="_on_player_path_show_caution"]
@@ -1139,7 +1459,7 @@ text = "Continue"
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/AcceleratorPower" to="SetupUI" method="_on_accelerator_power_pressed"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/CarUpgradesUI/BrakePower" to="SetupUI" method="_on_brake_power_pressed"]
 [connection signal="pressed" from="SetupUI/Panel/ShopUI/SHOP" to="SetupUI" method="_on_shop_pressed"]
-[connection signal="pressed" from="SetupUI/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
+[connection signal="pressed" from="SetupUI/StartRacePanel/VBoxContainer/StartRaceButton" to="SetupUI" method="_on_start_race_button_pressed"]
 [connection signal="pressed" from="ResultsUI/Continue" to="ResultsUI" method="_on_continue_pressed"]
 
 [editable path="Components/RaceManager/RacerPaths/CPURacerPath"]

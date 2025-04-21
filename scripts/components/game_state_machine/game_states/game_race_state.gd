@@ -3,7 +3,7 @@ extends GameState
 @onready var race_manager: RaceManager = $"../../RaceManager"
 @onready var race_ui: CanvasLayer = $"../../../RaceUI"
 @onready var racer_paths: Node2D = $"../../RaceManager/RacerPaths"
-
+@onready var background_grid: TileMapLayer = $"../../../BackgroundGrid"
 
 func enter() -> void:
 	race_ui.show()
@@ -12,6 +12,7 @@ func enter() -> void:
 	racer_paths.show()
 	racer_paths.initialize_racers()
 	race_ui.start_countdown()
+	background_grid.hide()
 
 
 func exit() -> void:
